@@ -1,0 +1,31 @@
+
+
+<li>
+    <button (click)="openEditProfComponent()"
+            class="m-1 btn btn-light btn-outline-primary float-right" 
+            Button>
+            Edit Profile
+    </button>
+</li>
+<li>
+    <button (click)="openEditPetComponent()"
+    class="m-1 btn btn-light btn-outline-primary float-right" 
+    Button>
+    Add new pet
+    </button>
+</li>
+
+
+<div *ngIf="should_open_EditProf">
+    <app-edit-prof></app-edit-prof>
+    <app-show-pet></app-show-pet>
+</div>
+
+<div *ngIf="should_open_EditPet">
+    <app-add-edit-pet></app-add-edit-pet>
+</div>
+
+
+<div class="space"></div> 
+
+<router-outlet></router-outlet>
