@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "vetclinic-frontend"
+  "defaultProject": "vetclinic-frontend",
+  "cli": {
+    "analytics": "996b4143-fd79-4cfd-9010-34f2458fe51b"
+  }
 }

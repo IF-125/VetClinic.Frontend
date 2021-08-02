@@ -3,22 +3,26 @@ import { AppointmentBookingComponent } from './Appointment-booking/appointment-b
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import{HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './Navigation/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DoctorPageComponent } from './doctor-page/doctor-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    AppointmentBookingComponent
+    AppointmentBookingComponent,
+    DoctorPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
