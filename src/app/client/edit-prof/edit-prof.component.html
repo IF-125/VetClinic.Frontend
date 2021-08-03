@@ -1,0 +1,55 @@
+
+
+
+<div class="fields">
+
+    <div class="info">
+        <div>
+            
+                
+                <input  
+                    #box
+                    id="clientIdFront"
+                    type="text" 
+                    style="width: 7%;"
+                    placeholder="Enter client Id"
+                    nam="client id"
+                    [ngModel]="clientId"
+                />
+
+                <button (click)="showClientWithPet(box.value)">Click me</button>
+
+           
+            
+        </div>
+        
+    </div>
+
+    <div class="info">
+        <div>
+            <label>First Name</label>
+            <input value="{{client.firstName}}" id="first-name" type="text">
+        </div>
+        <div>
+            <label>Last Name</label>
+            <input value="{{client.lastName}}" id="last-name" type="text">
+        </div> 
+    </div>
+    <div class="info">     
+        <div>
+            <label>Email</label>
+            <input value="{{client.email}}" id="email" type="email">
+        </div>     
+        <div>
+            <label>Phone number</label>
+            <input value="{{client.phoneNumber}}" id="phone-number" type="phoneNumber">
+        </div> 
+    </div>
+    
+</div>
+
+
+
+
+
+<router-outlet></router-outlet>
