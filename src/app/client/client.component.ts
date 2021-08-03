@@ -20,7 +20,11 @@ export class ClientComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  displayPopup:boolean=false;
   
+    togglePopup(){
+        this.displayPopup=!this.displayPopup;
+    }
 
   openEditProfComponent(){
     this.should_open_EditProf = true;

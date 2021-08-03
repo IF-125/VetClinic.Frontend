@@ -1,5 +1,28 @@
 
+<div class="pets">
+  
+  <div class="pet-wrapper" *ngFor="let dataItem of PetList">
+    <div class="pet">
+      <img class="pet-image" src='./assets/images/Pets/{{dataItem.id}}.jpg'>
+      <div class="pet-text" >
 
+        <h1>{{dataItem.name}}</h1>
+        <div class="pet-info">
+          <h2><span class="bold">Type: </span>{{dataItem.animalTypeId}}</h2>
+          <h2><span class="bold">Breed: </span>{{dataItem.breed}}</h2>
+          <h2><span class="bold">Age: </span>{{dataItem.age}}</h2>
+        </div>
+        <p>{{dataItem.information}}</p>
+      
+      </div>
+      <img class="icon" src="./assets/images/clipboard.svg">
+    </div>
+    <div class="graphic"></div>
+  </div>
+  
+</div>
+
+<!-- 
 <table class="table table-striped">
     <thead>
         <tr>
@@ -39,4 +62,7 @@ data-backdrop="static" data-keyboard="false"
             </td>
         </tr>
     </tbody>
-</table>
+</table> -->
+
+
+

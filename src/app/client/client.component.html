@@ -1,5 +1,31 @@
 
 
+<div class="popup-form-wrapper" *ngIf="displayPopup">
+    <div class="bg" (click)="togglePopup()"></div>
+    <div class="popup-form">
+      <h1 class="popup-title">Current Appointments</h1>
+
+        <p>Edit profile filds</p>
+
+
+    </div>
+  </div>
+  
+  <div class="client-section">
+
+    <app-show-pet></app-show-pet>
+  
+    <div class="menu-wrapper">
+      <div class="menu">
+        <h1 class="menu-title">Yusuf Amir</h1>
+        <input class="menu-field" value="View appointments" type="button" (click)="togglePopup()">
+      </div>
+    </div>
+  </div>
+
+  <!-- <router-outlet></router-outlet> -->
+
+<!-- ////////////////////////////// -->
 <li>
     <button (click)="openEditProfComponent()"
             class="m-1 btn btn-light btn-outline-primary float-right" 
