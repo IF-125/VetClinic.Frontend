@@ -1,11 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 
 import { AddEditPetComponent } from './pet/add-edit-pet/add-edit-pet.component';
 import { PetComponent } from './pet/pet.component';
@@ -27,7 +25,6 @@ import { SharedService } from './shared.service';
     AppComponent,
     NavbarComponent,
     FooterComponent,
-    AppointmentBookingComponent,
     DoctorPageComponent,
     PetComponent,
     ShowPetComponent,
