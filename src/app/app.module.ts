@@ -3,12 +3,14 @@ import { AppointmentBookingComponent } from './Appointment-booking/appointment-b
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import{HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './Navigation/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DoctorPageComponent } from './doctor-page/doctor-page.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,16 @@ import { DoctorPageComponent } from './doctor-page/doctor-page.component';
     NavbarComponent,
     FooterComponent,
     AppointmentBookingComponent,
-    DoctorPageComponent
+    DoctorPageComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
