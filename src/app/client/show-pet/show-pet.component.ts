@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { SharedService } from 'src/app/shared.service';
 export class ShowPetComponent implements OnInit {
 
   constructor(private service:SharedService) { }
+
+  @Input() clientId='';
 
   PetList:any=[];
 
@@ -56,7 +58,7 @@ export class ShowPetComponent implements OnInit {
 
 
   refreshPetList(){
-    this.service.getPetList().subscribe(data=>{
+    this.service.getPetListByClientId(this.clientId).subscribe(data=>{
       this.PetList=data;
       this.PetListWithoutFilter=data;
     });

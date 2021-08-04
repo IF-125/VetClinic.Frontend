@@ -14,6 +14,10 @@ export class SharedService {
     getPetList():Observable<any[]>{
       return this.http.get<any>(this.APIUrl+'/pets');
     }
+
+    getPetListByClientId(val:any):Observable<any[]>{
+      return this.http.get<any>(this.APIUrl+'/Pets/GetByClientId/'+val)
+    }
   
     addPet(val:any){
       return this.http.post(this.APIUrl+'/pets',val);

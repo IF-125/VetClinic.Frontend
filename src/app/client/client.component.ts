@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 
@@ -13,11 +15,17 @@ export class ClientComponent implements OnInit {
   public should_open_EditProf = false;
   public should_open_EditPet = false;
 
+  clientId:any;
   
-  constructor() { }
+  constructor( private route: ActivatedRoute) { }
 
   
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.clientId = params['clientId']; 
+      console.log(this.clientId);
+    });
+    
   }
 
   displayPopup:boolean=false;

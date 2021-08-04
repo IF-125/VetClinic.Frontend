@@ -10,8 +10,8 @@ export class EditProfComponent implements OnInit {
 
   constructor(private service:SharedService) { }
   
-   pet:any;
-   petList:any=[];
+  //  pet:any;
+  //  petList:any=[];
 
    
 
@@ -42,8 +42,8 @@ export class EditProfComponent implements OnInit {
     console.log(this.client);
 
     //get Pets info
-    this.service.getPetList().subscribe(
-      data=>{this.petList=data;})
+    // this.service.getPetList().subscribe(
+    //   data=>{this.petList=data;})
   }
 
 }
