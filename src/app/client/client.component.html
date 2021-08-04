@@ -13,11 +13,11 @@
   
   <div class="client-section">
 
-    <app-show-pet></app-show-pet>
+    <app-show-pet [clientId]="clientId"></app-show-pet>
   
     <div class="menu-wrapper">
       <div class="menu">
-        <h1 class="menu-title">Yusuf Amir</h1>
+        <h1 class="menu-title">{{}}</h1>
         <input class="menu-field" value="View appointments" type="button" (click)="togglePopup()">
       </div>
     </div>
