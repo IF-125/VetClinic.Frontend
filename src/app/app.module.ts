@@ -1,3 +1,4 @@
+import { AppointmentComponent } from './Appointment/appointment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -32,7 +33,8 @@ import { SharedService } from './shared.service';
     ClientComponent,
     EditProfComponent,
     ProceduresComponent,
-    HomeComponent
+    HomeComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,

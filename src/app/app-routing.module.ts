@@ -1,3 +1,4 @@
+import { AppointmentComponent } from './Appointment/appointment.component';
 import { ClientComponent } from './client/client.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'client', component:ClientComponent},
   { path: 'client/pet', component: HomeComponent },
   { path: 'doctor-page', component: DoctorPageComponent},
-  { path: 'procedures', component: ProceduresComponent}
+  { path: 'procedures', component: ProceduresComponent},
+  { path: 'appointment', component: AppointmentComponent}
 ];
 
 @NgModule({
