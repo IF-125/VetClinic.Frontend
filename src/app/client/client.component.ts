@@ -1,3 +1,4 @@
+import { SharedService } from './../shared.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,23 +17,34 @@ export class ClientComponent implements OnInit {
   public should_open_EditPet = false;
 
   clientId:any;
+  client:any;
   
-  constructor( private route: ActivatedRoute) { }
+  constructor( private route: ActivatedRoute, private service:SharedService) { }
 
   
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.clientId = params['clientId']; 
       console.log(this.clientId);
+
+      this.service.getClientById(this.clientId).subscribe(data=>{
+        this.client=data;
+        
+      })
     });
     
   }
 
-  displayPopup:boolean=false;
+  displayProfileComponent:boolean=false;
+  displayPetComponent:boolean=false;
   
-    togglePopup(){
-        this.displayPopup=!this.displayPopup;
-    }
+  toggleProfilePopup(){
+      this.displayProfileComponent=!this.displayProfileComponent;
+  }
+
+  toggleAddPetPopup(){
+    this.displayPetComponent=!this.displayPetComponent;
+}
 
   openEditProfComponent(){
     this.should_open_EditProf = true;

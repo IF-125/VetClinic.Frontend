@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/shared.service';
 
 @Component({
@@ -10,13 +10,13 @@ export class EditProfComponent implements OnInit {
 
   constructor(private service:SharedService) { }
   
-  //  pet:any;
-  //  petList:any=[];
+   pet:any;
+   petList:any=[];
 
    
 
   
-   client:any;
+   @Input() client:any;
    clientId:any="1c4c9910-f036-446e-b6e0-130245586bef";
    
 
@@ -26,24 +26,6 @@ export class EditProfComponent implements OnInit {
 
 
 
-  public showClientWithPet(val:string)
-  {
-    
-    this.clientId=val;
-
-    console.log(this.clientId)
-
-    //get Client info
-    this.service.getClientById(this.clientId).subscribe(data=>{
-      this.client=data;
-    })
-    
-
-    console.log(this.client);
-
-    //get Pets info
-    // this.service.getPetList().subscribe(
-    //   data=>{this.petList=data;})
-  }
+  
 
 }

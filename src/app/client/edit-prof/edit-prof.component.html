@@ -1,52 +1,23 @@
 
+<div>
+    <form action="/action_page.php">
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="firstname" value="{{client.firstName}}" placeholder="Your name..">
+  
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lastname" value="{{client.lastName}}" placeholder="Your last name..">
 
-
-<div class="fields">
-
-    <div class="info">
-        <div>
-            
-                
-                <input  
-                    #box
-                    id="clientIdFront"
-                    type="text" 
-                    style="width: 7%;"
-                    placeholder="Enter client Id"
-                    nam="client id"
-                    [ngModel]="clientId"
-                />
-
-                <button (click)="showClientWithPet(box.value)">Click me</button>
-
-           
-            
-        </div>
-        
-    </div>
-
-    <div class="info">
-        <div>
-            <label>First Name</label>
-            <input value="{{client.firstName}}" id="first-name" type="text">
-        </div>
-        <div>
-            <label>Last Name</label>
-            <input value="{{client.lastName}}" id="last-name" type="text">
-        </div> 
-    </div>
-    <div class="info">     
-        <div>
-            <label>Email</label>
-            <input value="{{client.email}}" id="email" type="email">
-        </div>     
-        <div>
-            <label>Phone number</label>
-            <input value="{{client.phoneNumber}}" id="phone-number" type="phoneNumber">
-        </div> 
-    </div>
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" value="{{client.phoneNumber}}" placeholder="Your email..">
+      
+      <label for="phone-number">Phone number</label>
+      <input type="text" id="phone-number" name="phone-number" value="{{client.phoneNumber}}" placeholder="Your phone number..">
+      
+      
     
-</div>
+      <input type="submit" value="Submit">
+    </form>
+  </div>
 
 
 

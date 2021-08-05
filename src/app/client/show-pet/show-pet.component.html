@@ -3,7 +3,13 @@
   
   <div class="pet-wrapper" *ngFor="let dataItem of PetList">
     <div class="pet">
-      <img class="pet-image" src='./assets/images/Pets/{{dataItem.id}}.jpg'>
+
+      <div class="pet-image-container"> 
+        <img class="pet-image" src='./assets/images/Pets/{{dataItem.id}}.jpg'>
+
+      </div>
+
+
       <div class="pet-text" >
 
         <h1>{{dataItem.name}}</h1>

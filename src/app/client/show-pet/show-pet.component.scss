@@ -31,8 +31,18 @@
     font-size: 28px;
   }
   .pet-image{
-    max-width: 300px;
+ 
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
     
+  }
+
+  .pet-image-container{
+    width: 300px;
+    display: inline-block;
+    //max-height: 120px;
+    //margin:  10;
   }
   .icon{
     width: 30px;

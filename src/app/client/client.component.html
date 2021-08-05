@@ -1,27 +1,40 @@
 
 
-<div class="popup-form-wrapper" *ngIf="displayPopup">
-    <div class="bg" (click)="togglePopup()"></div>
-    <div class="popup-form">
-      <h1 class="popup-title">Current Appointments</h1>
+<div class="popup-form-wrapper" *ngIf="displayProfileComponent">
+  <div class="bg" (click)="toggleProfilePopup()"></div>
+  <div class="popup-form">
+    <h1 class="popup-title">Edit your profile</h1>
 
-        <p>Edit profile filds</p>
+      <app-edit-prof [client]="client"></app-edit-prof>
 
 
+  </div>
+</div>
+  
+<div class="popup-form-wrapper" *ngIf="displayPetComponent">
+  <div class="bg" (click)="toggleAddPetPopup()"></div>
+  <div class="popup-form">
+    <h1 class="popup-title">Add your pet</h1>
+
+      <app-show-pet [client]="client"></app-show-pet>
+
+
+  </div>
+</div>
+
+<div class="client-section">
+
+  <app-show-pet [clientId]="clientId"></app-show-pet>
+
+  <div class="menu-wrapper">
+    <div class="menu">
+      <h1 class="menu-title">{{client.firstName}} {{client.lastName}}</h1>
+      <input class="menu-field" value="Edit profile" type="button" (click)="toggleProfilePopup()">
+      <input class="menu-field" value="Add new pet" type="button" (click)="toggleAddPetPopup()">
     </div>
   </div>
   
-  <div class="client-section">
-
-    <app-show-pet [clientId]="clientId"></app-show-pet>
-  
-    <div class="menu-wrapper">
-      <div class="menu">
-        <h1 class="menu-title">{{}}</h1>
-        <input class="menu-field" value="View appointments" type="button" (click)="togglePopup()">
-      </div>
-    </div>
-  </div>
+</div>
 
   <!-- <router-outlet></router-outlet> -->
 
