@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderProceduresOfDoctor } from 'src/models/OrderProceduresOfDoctor';
+import { PetsForTreatmentService } from '../services/pets-for-treatment.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-page',
@@ -7,10 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DoctorPageComponent implements OnInit {
   
-  constructor() { }
+  doctorId: string;
+  pets: OrderProceduresOfDoctor[];
+
+  constructor(private service: PetsForTreatmentService, private route: ActivatedRoute) { }
 
   
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.doctorId = params['doctorId']; 
+    });
+
+    this.loadPets();
+  }
+
+  loadPets() {
+    this.service.getPets(this.doctorId).subscribe(res => {
+       this.pets = res;
+       console.log(this.pets);
+      });
   }
   
   title = 'Veterinary clinic';

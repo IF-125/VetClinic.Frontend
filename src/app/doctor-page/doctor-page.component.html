@@ -1,5 +1,4 @@
-
-  <div class="popup-form-wrapper" *ngIf="displayPopup">
+ <div class="popup-form-wrapper" *ngIf="displayPopup">
     <div class="bg" (click)="togglePopup()"></div>
     <div class="popup-form">
       <h1 class="popup-title">Current Appointments</h1>
@@ -16,72 +15,6 @@
           <td>10:00</td>
           <td>George Smith</td>
         </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
-          <td>George Smith</td>
-        </tr>
       </table> 
     </div>
   </div>
@@ -89,81 +22,20 @@
   <div class="doctor-section">
     <div class="pets">
       <input placeholder="Enter pet name" type="text">
-      <div class="pet-wrapper">
+      <div *ngFor="let pet of pets" class="pet-wrapper">
         <div class="pet">
           <img class="pet-image" src="./assets/images/cat1.png">
           <div class="pet-text">
-            <h1>Sam</h1>
+            <h1>{{pet?.name}}</h1>
             <div class="pet-info">
-              <h2><span class="bold">Type: </span>Cat</h2>
-              <h2><span class="bold">Breed: </span>Bombay</h2>
-              <h2><span class="bold">Age: </span>4 years</h2>
+              <h2><span class="bold">Type: </span>{{pet?.animalType}}</h2>
+              <h2><span class="bold">Breed: </span>{{pet?.petBreed}}</h2>
+              <h2><span class="bold">Age: </span>{{pet?.petAge}} year(s)</h2>
             </div>
-            <p>Sam is a four year old male cat, born in June of 2017. Previously he was treated for leg trauma and received a rabies shot in the last six months.</p>
-          </div>
-          <img class="icon" src="./assets/images/clipboard.svg">
-        </div>
-        <div class="graphic"></div>
-      </div>
-      <div class="pet-wrapper">
-        <div class="pet">
-          <img class="pet-image" src="./assets/images/cat1.png">
-          <div class="pet-text">
-            <h1>Sam</h1>
-            <div class="pet-info">
-              <h2><span class="bold">Type: </span>Cat</h2>
-              <h2><span class="bold">Breed: </span>Bombay</h2>
-              <h2><span class="bold">Age: </span>4 years</h2>
+            <p>{{pet?.petInformation}}</p>
+            <div>
+              <h2><span class="bold">Procedure: </span>{{pet?.procedureTitle}}</h2>
             </div>
-            <p>Sam is a four year old male cat, born in June of 2017. Previously he was treated for leg trauma and received a rabies shot in the last six months.</p>
-          </div>
-          <img class="icon" src="./assets/images/clipboard.svg">
-        </div>
-        <div class="graphic"></div>
-      </div>
-      <div class="pet-wrapper">
-        <div class="pet">
-          <img class="pet-image" src="./assets/images/cat1.png">
-          <div class="pet-text">
-            <h1>Sam</h1>
-            <div class="pet-info">
-              <h2><span class="bold">Type: </span>Cat</h2>
-              <h2><span class="bold">Breed: </span>Bombay</h2>
-              <h2><span class="bold">Age: </span>4 years</h2>
-            </div>
-            <p>Sam is a four year old male cat, born in June of 2017. Previously he was treated for leg trauma and received a rabies shot in the last six months.</p>
-          </div>
-          <img class="icon" src="./assets/images/clipboard.svg">
-        </div>
-        <div class="graphic"></div>
-      </div>
-      <div class="pet-wrapper">
-        <div class="pet">
-          <img class="pet-image" src="./assets/images/cat1.png">
-          <div class="pet-text">
-            <h1>Sam</h1>
-            <div class="pet-info">
-              <h2><span class="bold">Type: </span>Cat</h2>
-              <h2><span class="bold">Breed: </span>Bombay</h2>
-              <h2><span class="bold">Age: </span>4 years</h2>
-            </div>
-            <p>Sam is a four year old male cat, born in June of 2017. Previously he was treated for leg trauma and received a rabies shot in the last six months.</p>
-          </div>
-          <img class="icon" src="./assets/images/clipboard.svg">
-        </div>
-        <div class="graphic"></div>
-      </div>
-      <div class="pet-wrapper">
-        <div class="pet">
-          <img class="pet-image" src="./assets/images/cat1.png">
-          <div class="pet-text">
-            <h1>Sam</h1>
-            <div class="pet-info">
-              <h2><span class="bold">Type: </span>Cat</h2>
-              <h2><span class="bold">Breed: </span>Bombay</h2>
-              <h2><span class="bold">Age: </span>4 years</h2>
-            </div>
-            <p>Sam is a four year old male cat, born in June of 2017. Previously he was treated for leg trauma and received a rabies shot in the last six months.</p>
           </div>
           <img class="icon" src="./assets/images/clipboard.svg">
         </div>
