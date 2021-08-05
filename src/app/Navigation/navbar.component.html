@@ -1,11 +1,11 @@
 <div class="nav-back"></div>
 <div class="navbar">
-    <h1 class="logo">Vet<span style="color: #06C1FF;">Clinic</span></h1>
+    <h1 class="logo">Vet<span class="logo-style">Clinic</span></h1>
     <div class="options">
-        <p>ABOUT US</p>
-        <p>SERVICES</p>
-        <p>APPOINTMENT</p>
-        <p class="profile" (click)="togglePopup()">SIGN UP</p>
+        <a class="navbar-item" href="http://localhost:4200/home">ABOUT US</a>
+        <a class="navbar-item" href="http://localhost:4200/procedures">SERVICES</a>
+        <a class="navbar-item" href="http://localhost:4200/appointment">APPOINTMENT</a>
+        <p class="navbar-item" (click)="togglePopup()">SIGN UP</p>
     </div>
   </div>
   <div class="popup-form-wrapper" *ngIf="displayPopup">
