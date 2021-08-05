@@ -1,3 +1,4 @@
+import { AppointmentComponent } from './Appointment/appointment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
@@ -9,7 +10,7 @@ import { AddEditPetComponent } from './pet/add-edit-pet/add-edit-pet.component';
 import { PetComponent } from './pet/pet.component';
 import { FooterComponent } from './Footer/footer.component';
 import { HomeComponent } from './Home/home.component';
-import { ServicesComponent } from './Services/services.component';
+import { ProceduresComponent } from './Procedures/procedures.component';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './Navigation/navbar.component';
 import { DoctorPageComponent } from './doctor-page/doctor-page.component';
@@ -31,8 +32,9 @@ import { SharedService } from './shared.service';
     AddEditPetComponent,
     ClientComponent,
     EditProfComponent,
-    ServicesComponent,
-    HomeComponent
+    ProceduresComponent,
+    HomeComponent,
+    AppointmentComponent
   ],
   imports: [
     BrowserModule,

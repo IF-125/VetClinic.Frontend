@@ -16,15 +16,22 @@
 .logo{
     position: absolute;
     margin-left: 75px;
+    margin-top: 2vh;
 
     font-family: Roboto;
     font-style: normal;
     font-weight: 900;
     font-size: 32px;
-    line-height: 47px;
-    margin-top:9px;
+    &::selection{background-color: transparent;};
+    cursor: default;
 
     color: #000000;
+}
+
+.logo-style{
+    color: #06C1FF;
+    &::selection{background-color: transparent;};
+    cursor: default;
 }
 
 .popup-form{  
@@ -53,26 +60,24 @@
 
 .options{
     p{
-        &::selection{background-color: transparent;};
+        font-weight: bold;
+        &::selection{background: transparent}
+        cursor: pointer;
     }
-    margin-left: 700px;
+    margin-left: 45vw;
+    width: 100%;
 }
 
-p{
-    margin-top: 22px;
-    width: 25%;
+.navbar-item{
+    margin-top: 2vh;
+    width: 24%;
     font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
-    line-height: 21px;
     display: inline-block;
+    &::selection{background: transparent}
+    text-decoration: none;
 
     color: #295889;
-}
-
-.profile{
-    font-weight: bold;
 }
 
 .bg{
@@ -137,11 +142,13 @@ p{
 .sign-up{
     border-top-left-radius: 15px;
     &::selection{background-color: transparent;};
+    cursor: pointer;
 }
 
 .log-in{
     border-top-right-radius: 15px;
     &::selection{background-color: transparent;};
+    cursor: pointer;
 }
 
 .active{
