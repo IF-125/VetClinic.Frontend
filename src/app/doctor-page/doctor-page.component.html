@@ -9,10 +9,10 @@
           <th>To</th>
           <th>Client</th>
         </tr>
-        <tr>
-          <td>April 13, 2021</td>
-          <td>9:30 </td>
-          <td>10:00</td>
+        <tr *ngFor="let a of appointments">
+          <td>{{a?.date}}</td>
+          <td>{{a?.from}}</td>
+          <td>{{a?.to}}</td>
           <td>George Smith</td>
         </tr>
       </table> 
