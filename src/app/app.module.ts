@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './Footer/footer.component';
 import { HomeComponent } from './Home/home.component';
-import { ProceduresComponent } from './Procedures/procedures.component';
+import { ProceduresComponent } from './procedures/procedures.component';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './Navigation/navbar.component';
 import { DoctorPageComponent } from './doctor-page/doctor-page.component';
@@ -28,9 +28,9 @@ import { SharedService } from './shared.service';
     ShowPetComponent,
     ClientComponent,
     EditProfComponent,
+    ProceduresComponent,
     ServicesComponent,
     AddEditPetComponent
-    ProceduresComponent,
     HomeComponent,
     AppointmentComponent
   ],
