@@ -26,15 +26,7 @@ export class ShowPetComponent implements OnInit {
     this.refreshPetList();
   }
 
-  addClick(){
-    this.pet={
-      PetId:0,
-      PetName:""
-    }
-    this.ModalTitle="Add Pet";
-    this.ActivateAddEditPetComp=true;
-
-  }
+  
 
   editClick(item){
     this.pet=item;
@@ -51,10 +43,6 @@ export class ShowPetComponent implements OnInit {
     }
   }
 
-  closeClick(){
-    this.ActivateAddEditPetComp=false;
-    this.refreshPetList();
-  }
 
 
   refreshPetList(){
@@ -64,28 +52,7 @@ export class ShowPetComponent implements OnInit {
     });
   }
 
-  FilterFn(){
-    var PetIdFilter = this.PetIdFilter;
-    var PetNameFilter = this.PetNameFilter;
-
-    this.PetList = this.PetListWithoutFilter.filter(function (el){
-        return el.PetId.toString().toLowerCase().includes(
-          PetIdFilter.toString().trim().toLowerCase()
-        )&&
-        el.PetName.toString().toLowerCase().includes(
-          PetNameFilter.toString().trim().toLowerCase()
-        )
-    });
-  }
-
-  sortResult(prop,asc){
-    this.PetList = this.PetListWithoutFilter.sort(function(a,b){
-      if(asc){
-          return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
-      }else{
-        return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
-      }
-    })
-  }
+  
+ 
 
 }

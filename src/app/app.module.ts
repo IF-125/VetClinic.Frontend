@@ -4,9 +4,6 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
-import { AddEditPetComponent } from './pet/add-edit-pet/add-edit-pet.component';
-import { PetComponent } from './pet/pet.component';
 import { FooterComponent } from './Footer/footer.component';
 import { HomeComponent } from './Home/home.component';
 import { ServicesComponent } from './Services/services.component';
@@ -16,6 +13,7 @@ import { DoctorPageComponent } from './doctor-page/doctor-page.component';
 import { ClientComponent } from './client/client.component';
 import { EditProfComponent } from './client/edit-prof/edit-prof.component';
 import { ShowPetComponent } from './client/show-pet/show-pet.component';
+import { AddEditPetComponent } from './client/add-edit-pet/add-edit-pet.component';
 
 import { SharedService } from './shared.service';
 
@@ -26,13 +24,12 @@ import { SharedService } from './shared.service';
     NavbarComponent,
     FooterComponent,
     DoctorPageComponent,
-    PetComponent,
     ShowPetComponent,
-    AddEditPetComponent,
     ClientComponent,
     EditProfComponent,
     ServicesComponent,
-    HomeComponent
+    HomeComponent,
+    AddEditPetComponent
   ],
   imports: [
     BrowserModule,

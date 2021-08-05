@@ -13,8 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ClientComponent implements OnInit {
 
-  public should_open_EditProf = false;
-  public should_open_EditPet = false;
 
   clientId:any;
   client:any;
@@ -25,7 +23,7 @@ export class ClientComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.clientId = params['clientId']; 
-      console.log(this.clientId);
+      
 
       this.service.getClientById(this.clientId).subscribe(data=>{
         this.client=data;
@@ -46,13 +44,6 @@ export class ClientComponent implements OnInit {
     this.displayPetComponent=!this.displayPetComponent;
 }
 
-  openEditProfComponent(){
-    this.should_open_EditProf = true;
-    this.should_open_EditPet = false;
-  }
-  openEditPetComponent(){
-    this.should_open_EditPet = true;
-    this.should_open_EditProf = false;
-   }
+  
 
 }
