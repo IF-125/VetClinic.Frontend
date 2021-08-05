@@ -34,6 +34,7 @@ export class DoctorPageComponent implements OnInit {
   title = 'Veterinary clinic';
   
   displayPopup:boolean=false;
+  
     togglePopup(){
         this.displayPopup=!this.displayPopup;
     }

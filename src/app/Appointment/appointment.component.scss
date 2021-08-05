@@ -1,0 +1,98 @@
+.title{
+    font-family: Roboto;
+    font-size: 72px;
+    font-weight: 700;
+    text-align: center;
+    margin: 40px 0 40px 0;
+
+    color: #295889;
+}
+.info{
+    position: relative;
+    img{
+        max-width: 1200px;
+        display: block;
+        margin: 0 auto;
+    }
+}
+.info-header{
+    position: absolute;
+    margin: 0 0 0 200px;
+    bottom:180px;
+    width: 800px;
+
+    font-family: Roboto;
+    font-size: 36px;
+    font-weight: 600;
+    color: white;
+}
+.info-text{
+    position: absolute;
+    margin: 0 0 0 200px;
+    bottom:40px;
+    width: 900px;
+    line-height: 28px;
+
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight: 300;
+    color: white;
+    }
+.input-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.label-text{
+    margin: 10px 0 10px 75px;
+    width: 90%;
+
+    display: block;
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: left;
+}
+.input-field{
+    margin: 10px 0 10px 75px;
+    width: 80%;
+    height: 40px;
+    
+    border-radius: 10px;
+    border-width: 2px;
+    color: black;
+}
+
+.description-field{
+    margin: 10px 0 10px 75px;
+    width: 90%;
+    height: 150px;
+    
+    border-radius: 10px;
+    border-width: 2px;
+    color: black;
+}
+
+.contact-title{
+    text-align: center;
+    margin: 30px 0 40px 0;
+    font-family: Roboto;
+    font-size: 72px;
+    font-weight: 700;
+
+}
+.submit-button{
+    height: 69px;
+    width: 282px;
+    left: 1083px;
+    top: 1762px;
+    border-radius: 5px;
+    font-family: Roboto;
+    font-size: 36px;    
+    font-weight: 500;  
+    background-color: #295889; 
+    color: white;
+    display: block;
+    margin: 15px 75px 30px auto;
+}
