@@ -38,4 +38,8 @@ export class SharedService {
     getClientById(val:any):Observable<any>{
       return this.http.get<any>(this.APIUrl+'/Client?id='+val)
     }
+
+    getProcedureList():Observable<any[]>{
+      return this.http.get<any>(this.APIUrl+'/procedure');
+    }
 }
