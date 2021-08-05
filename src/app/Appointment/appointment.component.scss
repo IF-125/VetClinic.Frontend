@@ -10,15 +10,15 @@
 .info{
     position: relative;
     img{
-        max-width: 1200px;
+        width: 80vw;
         display: block;
         margin: 0 auto;
     }
 }
 .info-header{
     position: absolute;
-    margin: 0 0 0 200px;
-    bottom:180px;
+    margin: 0 0 0 13vw;
+    bottom: 180px;
     width: 800px;
 
     font-family: Roboto;
@@ -28,8 +28,8 @@
 }
 .info-text{
     position: absolute;
-    margin: 0 0 0 200px;
-    bottom:40px;
+    margin: 0 0 0 13vw;
+    bottom: 40px;
     width: 900px;
     line-height: 28px;
 
