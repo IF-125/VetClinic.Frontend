@@ -17,7 +17,7 @@ describe('EditProfComponent', () => {
     fixture = TestBed.createComponent(EditProfComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }); 
 
   it('should create', () => {
     expect(component).toBeTruthy();
