@@ -29,8 +29,7 @@ import { SharedService } from './shared.service';
     ClientComponent,
     EditProfComponent,
     ProceduresComponent,
-    ServicesComponent,
-    AddEditPetComponent
+    AddEditPetComponent,
     HomeComponent,
     AppointmentComponent
   ],

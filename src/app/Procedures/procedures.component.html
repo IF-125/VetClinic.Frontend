@@ -1,23 +1,23 @@
 <div class="section-greeter">
-  <div class="text">
-      <h1>Having a problem?</h1>
-      <p>Book an appointment now and one of our professionals will take care of your animal.</p>
-      <button onclick="location.href='http://localhost:4200/appointment'">Book an appointment</button>
+    <div class="text">
+        <h1>Having a problem?</h1>
+        <p>Book an appointment now and one of our professionals will take care of your animal.</p>
+        <button onclick="location.href='http://localhost:4200/appointment'">Book an appointment</button>
+    </div>
+    <img src="..\assets\images\cat_with_vet.png">
   </div>
-  <img src="..\assets\images\cat_with_vet.png">
-</div>
-<div class="section-services">
-  <h1 class="services-header">Available Services</h1>
-  <table class="services-table">
-      <tr>
-        <th>Name</th>
-        <th>Duration</th>
-        <th>Price</th>
-      </tr>
-      <tr *ngFor="let procedure of Procedures">
-        <td>{{procedure.title}}</td>
-        <td>{{procedure.duration}}</td>
-        <td>{{procedure.price}}$</td>
-      </tr>
-    </table> 
-</div>
+  <div class="section-services">
+    <h1 class="services-header">Available Services</h1>
+    <table class="services-table">
+        <tr>
+          <th>Name</th>
+          <th>Duration</th>
+          <th>Price</th>
+        </tr>
+        <tr *ngFor="let procedure of Procedures">
+          <td>{{procedure.title}}</td>
+          <td>{{procedure.duration}}</td>
+          <td>{{procedure.price}}$</td>
+        </tr>
+      </table> 
+  </div>
