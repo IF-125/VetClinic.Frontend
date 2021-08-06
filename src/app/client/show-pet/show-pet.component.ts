@@ -13,25 +13,15 @@ export class ShowPetComponent implements OnInit {
   @Input() clientId='';
 
   PetList:any=[];
-
-  ModalTitle:string;
-  ActivateAddEditPetComp:boolean=false;
   pet:any;
-
-  PetIdFilter:string="";
-  PetNameFilter:string="";
-  PetListWithoutFilter:any=[];
 
   ngOnInit(): void {
     this.refreshPetList();
+    
   }
-
-  
 
   editClick(item){
     this.pet=item;
-    this.ModalTitle="Edit Pet";
-    this.ActivateAddEditPetComp=true;
   }
 
   deleteClick(item){
@@ -43,13 +33,10 @@ export class ShowPetComponent implements OnInit {
     }
   }
 
-
-
   refreshPetList(){
-    this.service.getPetListByClientId(this.clientId).subscribe(data=>{
-      this.PetList=data;
-      this.PetListWithoutFilter=data;
-    });
+      this.service.getPetListByClientId(this.clientId).subscribe(data=>{
+        this.PetList=data;
+      });
   }
 
   
