@@ -16,9 +16,6 @@ export class AddEditPetComponent implements OnInit {
   ngOnInit(): void {
     this.refreshAnimalTypeList();
 
-
-      
-
   }
 
   PhotoFileName:string;
@@ -29,10 +26,6 @@ export class AddEditPetComponent implements OnInit {
     const formData:FormData=new FormData();
     formData.append('uploadedFile',file,file.name);
 
-    // this.service.UploadPhoto(formData).subscribe((data:any)=>{
-    //   this.PhotoFileName=data.toString();
-    //   this.PhotoFilePath=this.service.PhotoUrl+this.PhotoFileName;
-    // })
   }
 
   refreshAnimalTypeList(){
