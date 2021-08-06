@@ -15,14 +15,10 @@ export class ShowPetComponent implements OnInit {
   PetList:any=[];
   pet:any;
 
-  
-
   ngOnInit(): void {
     this.refreshPetList();
     
   }
-
-  
 
   editClick(item){
     this.pet=item;
@@ -37,24 +33,10 @@ export class ShowPetComponent implements OnInit {
     }
   }
 
-
-
   refreshPetList(){
-    this.service.getPetListByClientId(this.clientId).subscribe(data=>{
-      this.PetList=data;
-      
-    
-    });
-    
-    var aType:any=[];
-    this.service.getAnimalTypeList().subscribe(data=>{
-      aType=data;
-
-      console.log(aType)
-    })
-      
-      
-    
+      this.service.getPetListByClientId(this.clientId).subscribe(data=>{
+        this.PetList=data;
+      });
   }
 
   
