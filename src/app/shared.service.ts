@@ -42,4 +42,9 @@ export class SharedService {
     getProcedureList():Observable<any[]>{
       return this.http.get<any>(this.APIUrl+'/procedure');
     }
+
+    getAnimalTypeList():Observable<any[]>{
+      return this.http.get<any>(this.APIUrl+'/AnimalTypes')
+    }
+    
 }

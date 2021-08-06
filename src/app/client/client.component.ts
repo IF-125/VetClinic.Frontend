@@ -17,6 +17,7 @@ export class ClientComponent implements OnInit {
   clientId:any;
   client:any;
   
+  
   constructor( private route: ActivatedRoute, private service:SharedService) { }
 
   

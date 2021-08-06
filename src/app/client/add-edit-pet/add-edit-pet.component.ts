@@ -1,3 +1,4 @@
+import { SharedService } from 'src/app/shared.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddEditPetComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:SharedService) { }
+
+  animalTypeList:any[];
+  
 
   ngOnInit(): void {
+    this.refreshAnimalTypeList();
+
+
+      
+
   }
 
   PhotoFileName:string;
@@ -26,4 +35,10 @@ export class AddEditPetComponent implements OnInit {
     // })
   }
 
+  refreshAnimalTypeList(){
+    
+    this.service.getAnimalTypeList().subscribe(data=>
+      this.animalTypeList=data)
+    
+  }
 }
