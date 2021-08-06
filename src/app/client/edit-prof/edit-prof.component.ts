@@ -10,19 +10,13 @@ export class EditProfComponent implements OnInit {
 
   constructor(private service:SharedService) { }
   
-    
-
-   
    @Input() client:any;
    
    
-
   ngOnInit(): void {
  
   }
 
 
-
-  
 
 }
