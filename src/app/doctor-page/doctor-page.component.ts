@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderProceduresOfDoctor } from 'src/models/OrderProceduresOfDoctor';
-import { PetsForTreatmentService } from '../services/pets/pets-for-treatment.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Appointment } from 'src/models/Appointment';
 import { AppointmentService } from '../services/appointments/appointment.service';
+import { PetsService } from '../services/pets/pets.service';
 
 @Component({
   selector: 'app-doctor-page',
   templateUrl: './doctor-page.component.html',
-  styleUrls: ['./doctor-page.component.scss']
+  styleUrls: ['./doctor-page.component.scss'],
 })
 export class DoctorPageComponent implements OnInit {
-  
   title = 'Veterinary clinic';
   displayPopup: boolean = false;
   displayMedicalCardPopup: boolean = false;
@@ -19,28 +18,29 @@ export class DoctorPageComponent implements OnInit {
   pets: OrderProceduresOfDoctor[];
   appointments: Appointment[];
 
-  constructor(private petService: PetsForTreatmentService,
-     private appointmentService: AppointmentService,
-     private route: ActivatedRoute) { }
+  constructor(
+    private petService: PetsService,
+    private appointmentService: AppointmentService,
+    private route: ActivatedRoute
+  ) {}
 
-  
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.doctorId = params['doctorId']; 
+    this.route.params.subscribe((params) => {
+      this.doctorId = params['doctorId'];
     });
 
     this.loadPets();
   }
 
   loadPets() {
-    this.petService.getPets(this.doctorId).subscribe(res => {
-       this.pets = res;
-       console.log(this.pets);
-      });
+    this.petService.getPets(this.doctorId).subscribe((res) => {
+      this.pets = res;
+      console.log(this.pets);
+    });
   }
 
   loadAppointments() {
-    this.appointmentService.getAppointments().subscribe(res => {
+    this.appointmentService.getAppointments().subscribe((res) => {
       this.appointments = res;
       console.log(this.appointments);
     });
@@ -49,12 +49,12 @@ export class DoctorPageComponent implements OnInit {
   openMedicalCard(id: number) {
     this.displayMedicalCardPopup = !this.displayMedicalCardPopup;
   }
-  
-    togglePopup(){
-        this.displayPopup=!this.displayPopup;
 
-        if(this.displayPopup) {
-          this.loadAppointments();
-        }
+  togglePopup() {
+    this.displayPopup = !this.displayPopup;
+
+    if (this.displayPopup) {
+      this.loadAppointments();
     }
+  }
 }
