@@ -12,6 +12,9 @@ import { AppointmentService } from '../services/appointments/appointment.service
 })
 export class DoctorPageComponent implements OnInit {
   
+  title = 'Veterinary clinic';
+  displayPopup: boolean = false;
+  displayMedicalCardPopup: boolean = false;
   doctorId: string;
   pets: OrderProceduresOfDoctor[];
   appointments: Appointment[];
@@ -40,12 +43,12 @@ export class DoctorPageComponent implements OnInit {
     this.appointmentService.getAppointments().subscribe(res => {
       this.appointments = res;
       console.log(this.appointments);
-    })
+    });
   }
 
-  title = 'Veterinary clinic';
-  
-  displayPopup:boolean=false;
+  openMedicalCard(id: number) {
+    this.displayMedicalCardPopup = !this.displayMedicalCardPopup;
+  }
   
     togglePopup(){
         this.displayPopup=!this.displayPopup;
