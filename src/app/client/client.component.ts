@@ -1,7 +1,9 @@
+import { Client } from './../../models/Client';
 import { SharedService } from './../shared.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Pet } from 'src/models/Pet';
 
 
 
@@ -15,7 +17,7 @@ export class ClientComponent implements OnInit {
 
 
   clientId:any;
-  client:any;
+  client:Client;
   
   
   constructor( private route: ActivatedRoute, private service:SharedService) { }
