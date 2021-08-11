@@ -29,7 +29,7 @@
 
   <div class="menu-wrapper">
     <div class="menu">
-      <h1 class="menu-title">{{client.firstName}} {{client.lastName}}</h1>
+      <h1 class="menu-title" *ngIf="client">{{client.firstName}} {{client.lastName}}</h1>
       <input class="menu-field" value="Edit profile" type="button" (click)="toggleProfilePopup()">
       <input class="menu-field" value="Add new pet" type="button" (click)="toggleAddPetPopup()">
     </div>
