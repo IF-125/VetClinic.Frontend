@@ -1,3 +1,4 @@
+import { Client } from 'src/models/Client';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClientsService } from '../services/clients/clients.service';
@@ -10,7 +11,7 @@ import { ClientsService } from '../services/clients/clients.service';
 export class ClientComponent implements OnInit {
  
   clientId: any;
-  client: any;
+  client: Client;
   displayProfileComponent: boolean = false;
   displayPetComponent: boolean = false;
 
@@ -23,6 +24,7 @@ export class ClientComponent implements OnInit {
 
       this.clientService.getClientById(this.clientId).subscribe((data) => {
         this.client = data;
+        this.client.id=this.clientId;
       });
     });
   }
