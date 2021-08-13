@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DoctorPageComponent } from './doctor-page/doctor-page.component';
 import { HomeComponent } from './home-page/home.component';
 import { ProceduresComponent } from './procedures-page/procedures.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'client/pet', component: HomeComponent },
   { path: 'doctor/:doctorId', component: DoctorPageComponent},
   { path: 'procedures', component: ProceduresComponent},
-  { path: 'appointment', component: AppointmentComponent}
+  { path: 'appointment', component: AppointmentComponent},
+  { path: 'register' , component: RegistrationFormComponent}
 ];
 
 @NgModule({
