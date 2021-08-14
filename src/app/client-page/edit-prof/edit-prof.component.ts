@@ -1,6 +1,6 @@
 import { ClientsService } from './../../services/clients/clients.service';
 import { Client } from './../../../models/Client';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { compare } from 'fast-json-patch';
 
 @Component({
@@ -15,11 +15,20 @@ export class EditProfComponent implements OnInit {
   @Input() client: Client;
   @Input() clientId: string;
 
+  @Output() closeEvent = new EventEmitter();
+
   inputClient: Client;
 
   ngOnInit(): void {
 
     this.cloneClientToImput();
+
+  }
+
+  submitClicked() {
+    this.patchClient()
+    this.cloneObjectToShow(this.client, this.inputClient);
+    this.closeEvent.next();
 
   }
 
@@ -30,8 +39,6 @@ export class EditProfComponent implements OnInit {
     console.log(patch);
 
     this.clientService.patchClient(this.clientId, patch).subscribe();
-
-    this.cloneObjectToShow(this.client, this.inputClient);
 
   }
 

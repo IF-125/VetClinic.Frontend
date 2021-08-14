@@ -5,8 +5,11 @@
   <div class="popup-form">
     <h1 class="popup-title">Edit your profile</h1>
 
-      <app-edit-prof [client]="client" [clientId]="clientId"></app-edit-prof>
-
+      <app-edit-prof 
+      [client]="client" 
+      [clientId]="clientId"
+      (closeEvent)="toggleProfilePopup()">
+      </app-edit-prof>
 
   </div>
 </div>
@@ -16,8 +19,11 @@
   <div class="popup-form">
     <h1 class="popup-title">{{petPopupTitle}}</h1>
 
-      <app-add-edit-pet [client]="client"
-                        [displayPetAddComponent]="displayPetAddComponent">
+      <app-add-edit-pet 
+      [client]="client"
+      [(ngModel)]="displayPetAddComponent"
+      [displayPetAddComponent]="displayPetAddComponent"
+      (closeEvent)="toggleAddPetPopup()">
       </app-add-edit-pet>
       
   </div>

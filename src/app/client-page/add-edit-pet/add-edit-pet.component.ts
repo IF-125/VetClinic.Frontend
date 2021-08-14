@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { PetsService } from './../../services/pets/pets.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AnimalTypesService } from 'src/app/services/animal-types/animal-types.service';
 import { PetClass } from 'src/models/PetClass';
 import { Client } from 'src/models/Client';
@@ -24,6 +24,8 @@ export class AddEditPetComponent implements OnInit {
 
   @Input()displayPetEditComponent:boolean;
   @Input()displayPetAddComponent: boolean;
+
+  @Output() closeEvent = new EventEmitter();
 
   //petToEdit:Pet;
 
@@ -54,6 +56,8 @@ export class AddEditPetComponent implements OnInit {
     else{
       this.addPet();
     }
+
+    this.closeEvent.next();
 
   }
 

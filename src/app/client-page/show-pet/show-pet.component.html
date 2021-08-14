@@ -4,9 +4,12 @@
   <div class="popup-form">
     <h1 class="popup-title">{{petPopupTitle}}</h1>
 
-      <app-add-edit-pet [petToEdit]="selectedPet" 
-                        [clientId]="clientId" 
-                        [displayPetEditComponent]="displayPetEditComponent"></app-add-edit-pet>
+      <app-add-edit-pet 
+      [petToEdit]="selectedPet" 
+      [clientId]="clientId" 
+      [displayPetEditComponent]="displayPetEditComponent"
+      (closeEvent)="toggleEditPetPopup()">
+      </app-add-edit-pet>
       
   </div>
 </div>
