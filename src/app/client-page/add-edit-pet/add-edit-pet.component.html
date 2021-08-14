@@ -7,7 +7,7 @@
     <form action="/action_page.php">
       
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" [(ngModel)]="petToAdd.name" placeholder="Your pet name..">
+        <input type="text" id="name" name="name" [(ngModel)]="inputPet.name" placeholder="Your pet name..">
 
         <label for="atype">Animal type</label>
         <select id="atype" name="atype" #t (change)="setTypeToPet(t.value)">
@@ -17,16 +17,16 @@
         </select>
 
         <label for="breed" >Breed</label>
-        <input type="text" id="breed" name="breed"  [(ngModel)]="petToAdd.breed"  placeholder="Your pet breed..">
+        <input type="text" id="breed" name="breed"  [(ngModel)]="inputPet.breed"  placeholder="Your pet breed..">
 
         <label for="age">Age</label>
-        <input type="text" id="age" name="age"  [(ngModel)]="petToAdd.age" placeholder="Your pet age..">
+        <input type="text" id="age" name="age"  [(ngModel)]="inputPet.age" placeholder="Your pet age..">
 
         <label for="information">Information about your pet</label>
-        <input type="text" id="information" name="information"  [(ngModel)]="petToAdd.information" placeholder="Your pet age.."> 
+        <input type="text" id="information" name="information"  [(ngModel)]="inputPet.information" placeholder="Your pet age.."> 
 
 
-        <input type="submit" value="Submit" (click)="addPet()">
+        <input type="submit" value="Submit" (click)="submitClicked()">
     </form>
   </div>
 

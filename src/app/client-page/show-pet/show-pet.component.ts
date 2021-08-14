@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PetsService } from 'src/app/services/pets/pets.service';
+import { Client } from 'src/models/Client';
+import { Pet } from 'src/models/Pet';
 
 @Component({
   selector: 'app-show-pet',
@@ -10,16 +12,25 @@ export class ShowPetComponent implements OnInit {
   constructor(private petService: PetsService) {}
 
   @Input() clientId = '';
+  @Input() client: Client;
 
-  PetList: any = [];
-  pet: any;
+  PetList: Pet[] = [];
+  selectedPet: any;
+
+  petPopupTitle:string;
+  displayPetEditComponent:boolean=false;
+  
 
   ngOnInit(): void {
     this.refreshPetList();
   }
 
-  editClick(item) {
-    this.pet = item;
+  toggleEditPetPopup(pet:Pet){
+    this.petPopupTitle="Edit your pet";
+    this.displayPetEditComponent=!this.displayPetEditComponent;
+    this.selectedPet=pet;
+    console.log(this.selectedPet)
+
   }
 
   deleteClick(item) {

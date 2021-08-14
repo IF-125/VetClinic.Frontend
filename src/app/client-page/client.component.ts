@@ -13,7 +13,9 @@ export class ClientComponent implements OnInit {
   clientId: any;
   client: Client;
   displayProfileComponent: boolean = false;
-  displayPetComponent: boolean = false;
+  displayPetAddComponent: boolean = false;
+
+  petPopupTitle:string;
 
   constructor(private route: ActivatedRoute,
      private clientService: ClientsService) {}
@@ -34,6 +36,7 @@ export class ClientComponent implements OnInit {
   }
 
   toggleAddPetPopup() {
-    this.displayPetComponent = !this.displayPetComponent;
+    this.displayPetAddComponent = !this.displayPetAddComponent;
+    this.petPopupTitle="Add your pet";
   }
 }

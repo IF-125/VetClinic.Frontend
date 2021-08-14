@@ -19,9 +19,9 @@ export class ClientsService {
     return this.http.get<any>(this.APIUrl + '/Client?id=' + val);
   }
 
-  patchClient(val: any, operation:Operation[]): Observable<any> {
+  patchClient(id: any, operation:Operation[]): Observable<any> {
 
     
-    return this.http.patch(this.APIUrl + '/Client/' + val, operation);
+    return this.http.patch(this.APIUrl + '/Client/' + id, operation);
   }
 }

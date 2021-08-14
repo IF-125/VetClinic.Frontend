@@ -11,21 +11,21 @@
   </div>
 </div>
   
-<div class="popup-form-wrapper" *ngIf="displayPetComponent">
+<div class="popup-form-wrapper" *ngIf="displayPetAddComponent">
   <div class="bg" (click)="toggleAddPetPopup()"></div>
   <div class="popup-form">
-    <h1 class="popup-title">Add your pet</h1>
+    <h1 class="popup-title">{{petPopupTitle}}</h1>
 
-      <app-add-edit-pet [client]="client"></app-add-edit-pet>
+      <app-add-edit-pet [client]="client"
+                        [displayPetAddComponent]="displayPetAddComponent">
+      </app-add-edit-pet>
       
-
-
   </div>
 </div>
 
 <div class="client-section">
 
-  <app-show-pet [clientId]="clientId"></app-show-pet>
+  <app-show-pet [clientId]="clientId" [client]="client"></app-show-pet>
 
   <div class="menu-wrapper">
     <div class="menu">

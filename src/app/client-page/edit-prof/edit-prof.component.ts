@@ -31,7 +31,7 @@ export class EditProfComponent implements OnInit {
 
     this.clientService.patchClient(this.clientId, patch).subscribe();
 
-    this.cloneObject(this.client, this.inputClient);
+    this.cloneObjectToShow(this.client, this.inputClient);
 
   }
 
@@ -39,7 +39,7 @@ export class EditProfComponent implements OnInit {
     this.inputClient = JSON.parse(JSON.stringify(this.client));
   }
 
-  cloneObject(target: any, source: any) {
+  cloneObjectToShow(target: any, source: any) {
     Object.keys(source).forEach((key) => {
       target[key] = source[key]
     });

@@ -1,27 +1,41 @@
 
+<div class="popup-form-wrapper" *ngIf="displayPetEditComponent">
+  <div class="bg" (click)="toggleEditPetPopup()"></div>
+  <div class="popup-form">
+    <h1 class="popup-title">{{petPopupTitle}}</h1>
+
+      <app-add-edit-pet [petToEdit]="selectedPet" 
+                        [clientId]="clientId" 
+                        [displayPetEditComponent]="displayPetEditComponent"></app-add-edit-pet>
+      
+  </div>
+</div>
+
+
+
 <div class="pets">
   
-  <div class="pet-wrapper" *ngFor="let dataItem of PetList">
+  <div class="pet-wrapper" *ngFor="let pet of PetList">
     <div class="pet">
 
       <div class="pet-image-container"> 
-        <img class="pet-image" src='./assets/images/Pets/{{dataItem.id}}.jpg'>
+        <img class="pet-image" src='./assets/images/Pets/{{pet.id}}.jpg'>
 
       </div>
 
 
       <div class="pet-text" >
 
-        <h1>{{dataItem.name}}</h1>
+        <h1>{{pet.name}}</h1>
         <div class="pet-info">
-          <h2><span class="bold">Type: </span>{{dataItem.animalType}}</h2>
-          <h2><span class="bold">Breed: </span>{{dataItem.breed}}</h2>
-          <h2><span class="bold">Age: </span>{{dataItem.age}}</h2>
+          <h2><span class="bold">Type: </span>{{pet.animalType}}</h2>
+          <h2><span class="bold">Breed: </span>{{pet.breed}}</h2>
+          <h2><span class="bold">Age: </span>{{pet.age}}</h2>
         </div>
-        <p>{{dataItem.information}}</p>
+        <p>{{pet.information}}</p>
       
       </div>
-      <img class="icon" src="./assets/images/pencil.svg">
+      <img class="icon" src="./assets/images/pencil.svg" (click)="toggleEditPetPopup(pet)">
       <img class="icon" src="./assets/images/clipboard.svg">
     </div>
     <div class="graphic"></div>
