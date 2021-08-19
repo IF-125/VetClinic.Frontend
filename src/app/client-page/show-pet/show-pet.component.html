@@ -22,8 +22,10 @@
     <div class="pet">
 
       <div class="pet-image-container"> 
-        <img class="pet-image" src='./assets/images/Pets/{{pet.id}}.jpg'>
 
+          <img class="pet-image"  *ngIf="pet.petImages[0]" src={{pet.petImages[0].path}}>
+          <img class="pet-image"  *ngIf="!pet.petImages[0]" src="./assets/images/noImage.jpg">
+          
       </div>
 
 
@@ -34,6 +36,8 @@
           <h2><span class="bold">Type: </span>{{pet.animalType}}</h2>
           <h2><span class="bold">Breed: </span>{{pet.breed}}</h2>
           <h2><span class="bold">Age: </span>{{pet.age}}</h2>
+          <!-- <h2><span class="bold">petImage: </span>{{pet[0].petImages[0]}}</h2> -->
+
         </div>
         <p>{{pet.information}}</p>
       

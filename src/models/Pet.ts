@@ -1,3 +1,5 @@
+import { PetImage } from "./PetImage";
+
 export interface Pet{
     id: number,
     name: string,
@@ -6,4 +8,5 @@ export interface Pet{
     age?: number,
     clientId?: string,
     animalType?: string
+    petImages?:PetImage[]
 }
