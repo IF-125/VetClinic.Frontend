@@ -1,3 +1,4 @@
+import { AdministratorComponent } from './administrator/administrator.component';
 import { AppointmentComponent } from './appointment-page/appointment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -29,7 +30,8 @@ import { AddEditPetComponent } from './client-page/add-edit-pet/add-edit-pet.com
     ProceduresComponent,
     AddEditPetComponent,
     HomeComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    AdministratorComponent
   ],
   imports: [
     BrowserModule,

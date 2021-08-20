@@ -1,21 +1,53 @@
  <div class="popup-form-wrapper" *ngIf="displayPopup">
     <div class="bg" (click)="togglePopup()"></div>
     <div class="popup-form">
-      <h1 class="popup-title">Current Appointments</h1>
-      <table class="appointment-table">
+      <h1 class="popup-title">Medical Card</h1>
+      <h2 class="pet-name">Spyro</h2>
+      <div class="pet-section">
+        <div class="image-wrapper">
+          <img src="https://images.unsplash.com/photo-1606468130092-4a7f1e6988b1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80">
+        </div>
+        <div class="pet-text">
+          <h3 class="type">Type: Lizard</h3>
+          <h3 class="age">Age: 3 years</h3>
+          <h3 class="breed">Breed: Bearded Dragon</h3>
+          <h3 class="owner">Owner: George Smith</h3>
+          <p class="description">Spyto is a 3 year old bearded dragon. He had no previous health problems, besides a small nasal blockage.</p>
+        </div>
+      </div>
+      <h1 class="popup-title">Previous procedures</h1>
+      <table class="procedures-table">
         <tr>
-          <th>Date</th>
-          <th>From</th>
-          <th>To</th>
-          <th>Client</th>
+          <th>Name</th>
+          <th>Conclusion</th>
+          <th>Details</th>
         </tr>
-        <tr *ngFor="let a of appointments">
-          <td>{{a?.date}}</td>
-          <td>{{a?.from}}</td>
-          <td>{{a?.to}}</td>
-          <td>George Smith</td>
+        <tr>
+          <td>Nasal blockage removal</td>
+          <td>Blockage removed</td>
+          <td>The patients responded well to the treatment</td>
         </tr>
-      </table> 
+        <tr>
+          <td>Parasite removal</td>
+          <td>Parasites removed</td>
+          <td>Patien was given stomach medication to treat symptoms after the procedure.</td>
+        </tr>
+        <tr>
+          <td>Wellness exam</td>
+          <td>Patient is healthy</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Wellness exam</td>
+          <td>Detected minor problems with joints in the left leg.</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input class="procedure-input" type="text"></td>
+          <td><input class="procedure-input" type="text"></td>
+          <td><input class="procedure-input" type="text"></td>
+        </tr>
+      </table>
     </div>
   </div>
 
@@ -23,6 +55,52 @@
     <div class="bg" (click)="openMedicalCard()"></div>
     <div class="popup-form">
       <h1 class="popup-title">Medical Card</h1>
+      <h2 class="pet-name">Spyro</h2>
+      <div class="pet-section">
+        <div class="image-wrapper">
+          <img src="https://images.unsplash.com/photo-1606468130092-4a7f1e6988b1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80">
+        </div>
+        <div class="pet-text">
+          <h3 class="type">Type: Lizard</h3>
+          <h3 class="age">Age: 3 years</h3>
+          <h3 class="breed">Breed: Bearded Dragon</h3>
+          <h3 class="owner">Owner: George Smith</h3>
+          <p class="description">Spyto is a 3 year old bearded dragon. He had no previous health problems, besides a small nasal blockage.</p>
+        </div>
+      </div>
+      <h1 class="popup-title">Previous procedures</h1>
+      <table class="procedures-table">
+        <tr>
+          <th>Name</th>
+          <th>Conclusion</th>
+          <th>Details</th>
+        </tr>
+        <tr>
+          <td>Nasal blockage removal</td>
+          <td>Blockage removed</td>
+          <td>The patients responded well to the treatment</td>
+        </tr>
+        <tr>
+          <td>Parasite removal</td>
+          <td>Parasites removed</td>
+          <td>Patien was given stomach medication to treat symptoms after the procedure.</td>
+        </tr>
+        <tr>
+          <td>Wellness exam</td>
+          <td>Patient is healthy</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Wellness exam</td>
+          <td>Detected minor problems with joints in the left leg.</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input class="procedure-input" type="text"></td>
+          <td><input class="procedure-input" type="text"></td>
+          <td><input class="procedure-input" type="text"></td>
+        </tr>
+      </table>
     </div>
   </div>
   
