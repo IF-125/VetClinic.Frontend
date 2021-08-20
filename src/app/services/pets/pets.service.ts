@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { tap } from 'rxjs/operators';
 import { MedicalCard } from 'src/models/MedicalCard';
 import { Pet } from 'src/models/Pet';
+import { Operation } from 'fast-json-patch';
+
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +38,10 @@ export class PetsService {
 
   updatePet(val: any) {
     return this.http.put(this.APIUrl + '/pets', val);
+  }
+
+  patchPet(id:any, operation:Operation[]):Observable<any>{
+    return this.http.patch(this.APIUrl+'/pets/'+id,operation);
   }
 
   deletePet(val: any) {

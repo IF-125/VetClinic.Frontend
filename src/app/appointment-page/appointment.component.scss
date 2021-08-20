@@ -38,10 +38,11 @@
     font-weight: 300;
     color: white;
     }
-.input-grid{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+.inputs{
+    display: flex;
+    div{
+        width: 50%;
+    }
 }
 
 .label-text{
@@ -51,7 +52,7 @@
     display: block;
     font-family: Roboto;
     font-size: 32px;
-    font-weight: 400;
+    font-weight: 500;
     text-align: left;
 }
 .input-field{
@@ -62,16 +63,9 @@
     border-radius: 10px;
     border-width: 2px;
     color: black;
-}
 
-.description-field{
-    margin: 10px 0 10px 75px;
-    width: 90%;
-    height: 150px;
-    
-    border-radius: 10px;
-    border-width: 2px;
-    color: black;
+    font-size: 18px;
+    font-family: Roboto;
 }
 
 .contact-title{
@@ -95,4 +89,96 @@
     color: white;
     display: block;
     margin: 15px 75px 30px auto;
+}
+.submit-button:disabled{
+    color: rgb(110, 110, 110);
+    background-color: #252a30;
+}
+.payment-section{
+    display: flex;
+    margin-top: 15px;
+    label{
+        margin: 10px 0 10px 20px;
+
+        display: block;
+        font-family: Roboto;
+        font-size: 32px;
+        font-weight: 400;
+        text-align: left;
+    }
+    input{
+        margin: 10px 0 10px 75px;
+        height: 20px;
+        width: 20px;
+    }
+}
+
+.creditCardForm {
+    max-width: 700px;
+    background-color: #fff;
+    margin: 100px auto;
+    overflow: hidden;
+    padding: 25px;
+    color: #4c4e56;
+}
+.creditCardForm label {
+    width: 100%;
+    margin-bottom: 10px;
+}
+.creditCardForm .heading h1 {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    color: #4c4e56;
+}
+.creditCardForm .payment {
+    float: left;
+    font-size: 18px;
+    padding: 10px 25px;
+    margin-top: 20px;
+    position: relative;
+}
+.creditCardForm .payment .form-group {
+    float: left;
+    margin-bottom: 15px;
+}
+.creditCardForm .payment .form-control {
+    line-height: 40px;
+    height: auto;
+    padding: 0 16px;
+}
+.creditCardForm .owner {
+    width: 63%;
+    margin-right: 10px;
+}
+.creditCardForm .CVV {
+    width: 35%;
+}
+.creditCardForm #card-number-field {
+    width: 100%;
+}
+.creditCardForm #expiration-date {
+    width: 49%;
+}
+.creditCardForm #credit_cards {
+    width: 50%;
+    margin-top: 25px;
+    text-align: right;
+}
+.creditCardForm #pay-now {
+    width: 100%;
+    margin-top: 25px;
+}
+.creditCardForm .payment .btn {
+    width: 100%;
+    margin-top: 3px;
+    font-size: 24px;
+    background-color: #2ec4a5;
+    color: white;
+}
+.creditCardForm .payment select {
+    padding: 10px;
+    margin-right: 15px;
+}
+.transparent {
+    opacity: 0.2;
 }

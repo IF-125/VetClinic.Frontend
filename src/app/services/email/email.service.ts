@@ -6,17 +6,13 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class ProceduresService {
+export class EmailService {
 
   APIUrl: string = environment.baseApiUrl;
   
   constructor(private http: HttpClient) { }
 
-  getProcedureList(): Observable<any[]> {
-    return this.http.get<any>(this.APIUrl + '/procedure');
-  }
-
-  addProcedure(val: any) {
-    return this.http.post(this.APIUrl + '/procedure', val);
+  sendEmail(val: any){
+    return this.http.post(this.APIUrl + '/email', val);
   }
 }
