@@ -119,6 +119,32 @@
 
   background-color: white;
 }
+
+.popup-medical-card-form{  
+  h2{
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      font-family: Roboto;
+      font-size: 36px;
+      font-weight: 500;
+      justify-content: center;
+  }
+  overflow-y: scroll;
+  border: solid;
+  border-width: 10px;
+  border-color: #295889;
+  border-radius: 25px;
+  position: fixed;
+  top: 15%;
+  left: 15%;
+  z-index: 2;
+  height: 700px;
+  width: 1400px;
+  overflow: auto;
+  background-color: white;
+}
+
 .bg{
   position: fixed;
   z-index: 1;
@@ -127,6 +153,7 @@
   opacity: 50%;
   background-color: black;
 }
+
 .popup-title{
   padding-top: 15px;
   padding-bottom: 15px;
@@ -138,6 +165,7 @@
 
   color: #295889;
 }
+
 .appointment-table{
   width: 100%;
   padding: 0 25px 25px 25px;
@@ -168,10 +196,6 @@
       padding-left: 5px;
   }
 }
-
-
-
-
 
 .pet-name{
   margin: 0 25px 0 25px;
@@ -210,18 +234,18 @@
 
 .procedures-table{
   margin: 0 25px 25px 25px;
+  min-width: 100%;
   tr{
       &:nth-of-type(odd){
-          background-color: #ECECEC;
+          background-color: #7ebafb;
       }
       &:nth-of-type(even){
-          background-color: #C4C4C4;
+          background-color: #9acbff;
       }
       &:nth-of-type(1){
           background-color: #FFF;
       }
       th{
-          text-align: left;
           padding: 20px 0 20px 5px;
 
           font-family: Roboto;
@@ -238,11 +262,10 @@
       line-height: 38px;
       letter-spacing: 0em;
       text-align: left;
-      
-      //max-width: 100px;
-      //overflow: hidden;
-      //text-overflow: ellipsis;
-      //white-space: nowrap;
+  }
+
+  td, th{
+    text-align: center;
   }
 }
 
@@ -256,4 +279,8 @@
 
     font-size: 18px;
     font-family: Roboto;
+}
+
+.conclusion-text{
+  color: #FFF;
 }

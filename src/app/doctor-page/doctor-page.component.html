@@ -1,71 +1,40 @@
- <div class="popup-form-wrapper" *ngIf="displayPopup">
+<div class="popup-form-wrapper" *ngIf="displayPopup">
     <div class="bg" (click)="togglePopup()"></div>
     <div class="popup-form">
-      <h1 class="popup-title">Medical Card</h1>
-      <h2 class="pet-name">Spyro</h2>
-      <div class="pet-section">
-        <div class="image-wrapper">
-          <img src="https://images.unsplash.com/photo-1606468130092-4a7f1e6988b1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80">
-        </div>
-        <div class="pet-text">
-          <h3 class="type">Type: Lizard</h3>
-          <h3 class="age">Age: 3 years</h3>
-          <h3 class="breed">Breed: Bearded Dragon</h3>
-          <h3 class="owner">Owner: George Smith</h3>
-          <p class="description">Spyto is a 3 year old bearded dragon. He had no previous health problems, besides a small nasal blockage.</p>
-        </div>
-      </div>
-      <h1 class="popup-title">Previous procedures</h1>
-      <table class="procedures-table">
+      <h1 class="popup-title">Current Appointments</h1>
+      <table class="appointment-table">
         <tr>
-          <th>Name</th>
-          <th>Conclusion</th>
-          <th>Details</th>
+          <th>Date</th>
+          <th>From</th>
+          <th>To</th>
+          <th>Client</th>
         </tr>
-        <tr>
-          <td>Nasal blockage removal</td>
-          <td>Blockage removed</td>
-          <td>The patients responded well to the treatment</td>
+        <tr *ngFor="let a of appointments">
+          <td>{{a?.date}}</td>
+          <td>{{a?.from}}</td>
+          <td>{{a?.to}}</td>
+          <td>George Smith</td>
         </tr>
-        <tr>
-          <td>Parasite removal</td>
-          <td>Parasites removed</td>
-          <td>Patien was given stomach medication to treat symptoms after the procedure.</td>
-        </tr>
-        <tr>
-          <td>Wellness exam</td>
-          <td>Patient is healthy</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Wellness exam</td>
-          <td>Detected minor problems with joints in the left leg.</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><input class="procedure-input" type="text"></td>
-          <td><input class="procedure-input" type="text"></td>
-          <td><input class="procedure-input" type="text"></td>
-        </tr>
-      </table>
+      </table> 
     </div>
   </div>
 
   <div class="popup-form-wrapper" *ngIf="displayMedicalCardPopup">
     <div class="bg" (click)="openMedicalCard()"></div>
-    <div class="popup-form">
+    <div class="popup-medical-card-form">
+      <div *ngIf="switchToMedicalCard">
       <h1 class="popup-title">Medical Card</h1>
-      <h2 class="pet-name">Spyro</h2>
+      <h2 class="pet-name">{{medicalCard.name}}</h2>
       <div class="pet-section">
         <div class="image-wrapper">
           <img src="https://images.unsplash.com/photo-1606468130092-4a7f1e6988b1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80">
         </div>
         <div class="pet-text">
-          <h3 class="type">Type: Lizard</h3>
-          <h3 class="age">Age: 3 years</h3>
-          <h3 class="breed">Breed: Bearded Dragon</h3>
-          <h3 class="owner">Owner: George Smith</h3>
-          <p class="description">Spyto is a 3 year old bearded dragon. He had no previous health problems, besides a small nasal blockage.</p>
+          <h3 class="type">Type: {{medicalCard.animalType}}</h3>
+          <h3 class="age">Age: {{medicalCard.age}} year(s)</h3>
+          <h3 class="breed">Breed: {{medicalCard.breed}}</h3>
+          <h3 class="owner">Owner: {{medicalCard.owner}}</h3>
+          <p class="description">{{medicalCard.information}}</p>
         </div>
       </div>
       <h1 class="popup-title">Previous procedures</h1>
@@ -74,33 +43,25 @@
           <th>Name</th>
           <th>Conclusion</th>
           <th>Details</th>
+          <th>Order date</th>
+          <th>Status</th>
         </tr>
-        <tr>
-          <td>Nasal blockage removal</td>
-          <td>Blockage removed</td>
-          <td>The patients responded well to the treatment</td>
-        </tr>
-        <tr>
-          <td>Parasite removal</td>
-          <td>Parasites removed</td>
-          <td>Patien was given stomach medication to treat symptoms after the procedure.</td>
-        </tr>
-        <tr>
-          <td>Wellness exam</td>
-          <td>Patient is healthy</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Wellness exam</td>
-          <td>Detected minor problems with joints in the left leg.</td>
-          <td></td>
-        </tr>
-        <tr>
-          <td><input class="procedure-input" type="text"></td>
-          <td><input class="procedure-input" type="text"></td>
-          <td><input class="procedure-input" type="text"></td>
+        <tr *ngFor="let o of medicalCard.orderProcedures">
+          <td>{{o.procedureTitle}}</td>
+          <td>{{o?.conclusion}}</td>
+          <td>{{o?.details}}</td>
+          <td>{{o.orderDate}}</td>
+          <td *ngIf="o.employeeId == doctorId && o.status == 'Assigned'; else showStatus">
+            <button (click)="showConclusionPopup()" [ngClass]="{active:switchToMedicalCard}" [ngClass]="{passive:displayConclusionPopup}">Add conclusion</button>
+          </td>
+          <ng-template #showStatus>{{o.status}}</ng-template>
         </tr>
       </table>
+    </div>
+    <div *ngIf="displayConclusionPopup">
+      <h1>Hello</h1>
+      <button (click)="showMedicalCard()" [ngClass]="{active:switchToMedicalCard}" [ngClass]="{passive:displayConclusionPopup}">Back</button>
+    </div>
     </div>
   </div>
   
@@ -118,9 +79,6 @@
               <h2><span class="bold">Age: </span>{{pet?.petAge}} year(s)</h2>
             </div>
             <p>{{pet?.petInformation}}</p>
-            <div>
-              <h2><span class="bold">Procedure: </span>{{pet?.procedureTitle}}</h2>
-            </div>
           </div>
           <img class="icon" src="./assets/images/clipboard.svg" (click)="openMedicalCard(pet?.id)">
         </div>

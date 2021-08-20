@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderProceduresOfDoctor } from 'src/models/OrderProceduresOfDoctor';
 import { ActivatedRoute } from '@angular/router';
 import { Appointment } from 'src/models/Appointment';
 import { AppointmentService } from '../services/appointments/appointment.service';
 import { PetsService } from '../services/pets/pets.service';
+import { MedicalCard } from 'src/models/MedicalCard';
+import { Pet } from 'src/models/Pet';
 
 @Component({
   selector: 'app-doctor-page',
@@ -14,9 +15,12 @@ export class DoctorPageComponent implements OnInit {
   title = 'Veterinary clinic';
   displayPopup: boolean = false;
   displayMedicalCardPopup: boolean = false;
+  displayConclusionPopup: boolean = false;
+  switchToMedicalCard: boolean = true;
   doctorId: string;
-  pets: OrderProceduresOfDoctor[];
+  pets: Pet[];
   appointments: Appointment[];
+  medicalCard: MedicalCard;
 
   constructor(
     private petService: PetsService,
@@ -35,7 +39,6 @@ export class DoctorPageComponent implements OnInit {
   loadPets() {
     this.petService.getPets(this.doctorId).subscribe((res) => {
       this.pets = res;
-      console.log(this.pets);
     });
   }
 
@@ -46,8 +49,19 @@ export class DoctorPageComponent implements OnInit {
     });
   }
 
-  openMedicalCard(id: number) {
+  loadMedicalCard(petId: number) {
+    this.petService.getMedicalCardOfPet(petId).subscribe((res) => {
+      this.medicalCard = res;
+      console.log(res);
+    })
+  }
+
+  openMedicalCard(petId: number) {
     this.displayMedicalCardPopup = !this.displayMedicalCardPopup;
+    console.log(petId);
+    if(petId) {
+      this.loadMedicalCard(petId);
+    }
   }
 
   togglePopup() {
@@ -56,5 +70,15 @@ export class DoctorPageComponent implements OnInit {
     if (this.displayPopup) {
       this.loadAppointments();
     }
+  }
+
+  showConclusionPopup() {
+    this.switchToMedicalCard = false;
+    this.displayConclusionPopup = true;
+  }
+
+  showMedicalCard() {
+    this.switchToMedicalCard = true;
+    this.displayConclusionPopup = false;
   }
 }

@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { OrderProceduresOfDoctor } from 'src/models/OrderProceduresOfDoctor';
 import { tap } from 'rxjs/operators';
+import { MedicalCard } from 'src/models/MedicalCard';
+import { Pet } from 'src/models/Pet';
 import { Operation } from 'fast-json-patch';
+
 
 @Injectable({
   providedIn: 'root',
@@ -14,10 +16,10 @@ export class PetsService {
 
   constructor(private http: HttpClient) {}
 
-  getPets(doctorId: string): Observable<OrderProceduresOfDoctor[]> {
+  getPets(doctorId: string): Observable<Pet[]> {
     return this.http
-      .get<OrderProceduresOfDoctor[]>(
-        `${this.APIUrl}/orderprocedure/GetOrderedProceduresOfDoctor?doctorId=${doctorId}`
+      .get<Pet[]>(
+        `${this.APIUrl}/pets/GetPetsToTreat/${doctorId}`
       )
       .pipe(tap((data) => data));
   }
@@ -48,5 +50,9 @@ export class PetsService {
 
   getPetById(val: any): Observable<any> {
     return this.http.get<any>(this.APIUrl + '/pets/' + val);
+  }
+
+  getMedicalCardOfPet(petId: number): Observable<MedicalCard>{
+    return this.http.get<MedicalCard>(`${this.APIUrl}/pets/GetMedicalCard/${petId}`).pipe(tap((data) => data));
   }
 }
