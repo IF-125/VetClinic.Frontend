@@ -5,6 +5,8 @@ import { AppointmentService } from '../services/appointments/appointment.service
 import { PetsService } from '../services/pets/pets.service';
 import { MedicalCard } from 'src/models/MedicalCard';
 import { Pet } from 'src/models/Pet';
+import { MedicalReport } from 'src/models/MedicalReport';
+import { OrderProceduresService } from '../services/order-procedures/order-procedures.service';
 
 @Component({
   selector: 'app-doctor-page',
@@ -12,6 +14,13 @@ import { Pet } from 'src/models/Pet';
   styleUrls: ['./doctor-page.component.scss'],
 })
 export class DoctorPageComponent implements OnInit {
+  constructor(
+    private petService: PetsService,
+    private appointmentService: AppointmentService,
+    private route: ActivatedRoute,
+    private orderProcedureService: OrderProceduresService
+  ) {}
+
   title = 'Veterinary clinic';
   displayPopup: boolean = false;
   displayMedicalCardPopup: boolean = false;
@@ -21,12 +30,9 @@ export class DoctorPageComponent implements OnInit {
   pets: Pet[];
   appointments: Appointment[];
   medicalCard: MedicalCard;
-
-  constructor(
-    private petService: PetsService,
-    private appointmentService: AppointmentService,
-    private route: ActivatedRoute
-  ) {}
+  selectedOrderProcedureId: number;
+  conclusion: string;
+  details: string;
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -45,21 +51,19 @@ export class DoctorPageComponent implements OnInit {
   loadAppointments() {
     this.appointmentService.getAppointments().subscribe((res) => {
       this.appointments = res;
-      console.log(this.appointments);
     });
   }
 
   loadMedicalCard(petId: number) {
     this.petService.getMedicalCardOfPet(petId).subscribe((res) => {
       this.medicalCard = res;
-      console.log(res);
-    })
+    });
   }
 
   openMedicalCard(petId: number) {
     this.displayMedicalCardPopup = !this.displayMedicalCardPopup;
-    console.log(petId);
-    if(petId) {
+
+    if (petId) {
       this.loadMedicalCard(petId);
     }
   }
@@ -72,13 +76,21 @@ export class DoctorPageComponent implements OnInit {
     }
   }
 
-  showConclusionPopup() {
+  showConclusionPopup(petId: number) {
     this.switchToMedicalCard = false;
     this.displayConclusionPopup = true;
+
+    this.selectedOrderProcedureId = petId;
   }
 
   showMedicalCard() {
     this.switchToMedicalCard = true;
     this.displayConclusionPopup = false;
+  }
+
+  submitMedicalReportClicked() {
+    let report: MedicalReport = {conclusion: this.conclusion, details: this.details };
+    this.orderProcedureService.addMedicalReport(this.selectedOrderProcedureId, report).subscribe();
+    this.showMedicalCard();
   }
 }
