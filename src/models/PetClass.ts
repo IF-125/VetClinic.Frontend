@@ -1,3 +1,5 @@
+import { PetImage } from "./PetImage";
+
 export class PetClass{
     //id: number,
     name: string;
@@ -6,4 +8,5 @@ export class PetClass{
     age: number;
     clientId: string;
     animalTypeId:number;
+    petImages?:PetImage[]
 }

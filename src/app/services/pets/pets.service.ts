@@ -49,4 +49,6 @@ export class PetsService {
   getPetById(val: any): Observable<any> {
     return this.http.get<any>(this.APIUrl + '/pets/' + val);
   }
+
+ 
 }

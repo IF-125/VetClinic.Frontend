@@ -1,5 +1,5 @@
 export interface PetImage{
     id:number,
-    path:number,
+    path:string,
     petId:number,
 }

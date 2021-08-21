@@ -1,3 +1,4 @@
+import { PetImagesService } from './../../services/pets/pet-images.service';
 import { HttpClient } from '@angular/common/http';
 import { PetsService } from './../../services/pets/pets.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -6,6 +7,7 @@ import { PetClass } from 'src/models/PetClass';
 import { Client } from 'src/models/Client';
 import { Pet } from 'src/models/Pet';
 import { compare } from 'fast-json-patch';
+import { PetImage } from 'src/models/PetImage';
 
 @Component({
   selector: 'app-add-edit-pet',
@@ -13,47 +15,51 @@ import { compare } from 'fast-json-patch';
   styleUrls: ['./add-edit-pet.component.scss'],
 })
 export class AddEditPetComponent implements OnInit {
-  constructor(private service: AnimalTypesService, private PetsService:PetsService) {}
+  constructor(private AnimalTypesService: AnimalTypesService,
+    private PetsService: PetsService,
+    private PetImagesService: PetImagesService) { }
 
-  @Input() client:Client;
+  @Input() client: Client;
   animalTypeList: any[];
 
-  @Input()petToAdd:PetClass=new PetClass();
-  @Input()petToEdit:Pet;
-  @Input()inputPet:any;
+  @Input() petToAdd: PetClass = new PetClass();
+  @Input() petToEdit: Pet;
+  @Input() inputPet: any;
 
-  @Input()displayPetEditComponent:boolean;
-  @Input()displayPetAddComponent: boolean;
+  @Input() displayPetEditComponent: boolean;
+  @Input() displayPetAddComponent: boolean;
 
   @Output() closeEvent = new EventEmitter();
 
   //petToEdit:Pet;
 
-  PhotoFileName: string;
+
   PhotoFilePath: string;
+  fileToUpload: File | null = null;
+
 
   ngOnInit(): void {
     this.refreshAnimalTypeList();
 
-    if(this.displayPetEditComponent){
-      this.clonePetToImput(); 
+    if (this.displayPetEditComponent) {
+      this.clonePetToImput();
     }
-    else{
-      this.inputPet=this.petToAdd;
+    else {
+      this.inputPet = this.petToAdd;
     }
 
-    
+
   }
 
   clonePetToImput() {
     this.inputPet = JSON.parse(JSON.stringify(this.petToEdit));
   }
-  submitClicked(){
-    
-    if(this.displayPetEditComponent){
+  submitClicked() {
+
+    if (this.displayPetEditComponent) {
       this.patchPet();
     }
-    else{
+    else {
       this.addPet();
     }
 
@@ -61,17 +67,17 @@ export class AddEditPetComponent implements OnInit {
 
   }
 
-  addPet(){
-    this.petToAdd.clientId=this.client.id
-    
+  addPet() {
+    this.petToAdd.clientId = this.client.id
+
     this.PetsService.addPet(this.petToAdd).subscribe();
 
   }
 
-  patchPet(){
-    let patch=compare(this.petToEdit,this.inputPet)
+  patchPet() {
+    let patch = compare(this.petToEdit, this.inputPet)
 
-    this.PetsService.patchPet(this.petToEdit.id,patch).subscribe();
+    this.PetsService.patchPet(this.petToEdit.id, patch).subscribe();
 
     this.cloneObjectToShow(this.petToEdit, this.inputPet);
 
@@ -84,22 +90,45 @@ export class AddEditPetComponent implements OnInit {
     });
   }
 
-  setTypeToPet(value:any) {
-  
+  setTypeToPet(value: any) {
+
     this.petToAdd.animalTypeId = value;
   }
 
 
 
   uploadPhoto(event) {
-    var file = event.target.files[0];
-    const formData: FormData = new FormData();
-    formData.append('uploadedFile', file, file.name);
+    this.fileToUpload = event.target.files[0];
+    
+
+    let petImage = {
+      petId: 1032
+
+    };
+
+    let petImageOut: PetImage;
+
+    this.PetImagesService.uploadImage(this.fileToUpload, petImage).subscribe(
+      (data) => {
+        petImageOut = data
+      });
+
+    console.log(petImageOut);
+
+    this.PhotoFilePath = petImageOut.path;
+
+    console.log(this.PhotoFilePath);
+
+
   }
 
   refreshAnimalTypeList() {
-    this.service
+    this.AnimalTypesService
       .getAnimalTypeList()
       .subscribe((data) => (this.animalTypeList = data));
   }
+
 }
+
+
+
