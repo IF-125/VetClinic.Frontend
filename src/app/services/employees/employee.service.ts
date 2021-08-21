@@ -7,11 +7,11 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AppointmentService {
+export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  getAppointments() : Observable<Appointment[]> {
-    return this.http.get<any>(`https://localhost:44350/api/Appointment`);
+  getEmployees(){
+    return this.http.get<any>(`https://localhost:44350/api/Employees`);
   }
 }

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderProceduresOfDoctor } from 'src/models/OrderProceduresOfDoctor';
 import { ActivatedRoute } from '@angular/router';
 import { Appointment } from 'src/models/Appointment';
 import { AppointmentService } from '../services/appointments/appointment.service';
 import { PetsService } from '../services/pets/pets.service';
+import { MedicalCard } from 'src/models/MedicalCard';
+import { Pet } from 'src/models/Pet';
+import { MedicalReport } from 'src/models/MedicalReport';
+import { OrderProceduresService } from '../services/order-procedures/order-procedures.service';
 
 @Component({
   selector: 'app-doctor-page',
@@ -11,18 +14,25 @@ import { PetsService } from '../services/pets/pets.service';
   styleUrls: ['./doctor-page.component.scss'],
 })
 export class DoctorPageComponent implements OnInit {
-  title = 'Veterinary clinic';
-  displayPopup: boolean = false;
-  displayMedicalCardPopup: boolean = false;
-  doctorId: string;
-  pets: OrderProceduresOfDoctor[];
-  appointments: Appointment[];
-
   constructor(
     private petService: PetsService,
     private appointmentService: AppointmentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private orderProcedureService: OrderProceduresService
   ) {}
+
+  title = 'Veterinary clinic';
+  displayPopup: boolean = false;
+  displayMedicalCardPopup: boolean = false;
+  displayConclusionPopup: boolean = false;
+  switchToMedicalCard: boolean = true;
+  doctorId: string;
+  pets: Pet[];
+  appointments: Appointment[];
+  medicalCard: MedicalCard;
+  selectedOrderProcedureId: number;
+  conclusion: string;
+  details: string;
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -35,19 +45,27 @@ export class DoctorPageComponent implements OnInit {
   loadPets() {
     this.petService.getPets(this.doctorId).subscribe((res) => {
       this.pets = res;
-      console.log(this.pets);
     });
   }
 
   loadAppointments() {
     this.appointmentService.getAppointments().subscribe((res) => {
       this.appointments = res;
-      console.log(this.appointments);
     });
   }
 
-  openMedicalCard(id: number) {
+  loadMedicalCard(petId: number) {
+    this.petService.getMedicalCardOfPet(petId).subscribe((res) => {
+      this.medicalCard = res;
+    });
+  }
+
+  openMedicalCard(petId: number) {
     this.displayMedicalCardPopup = !this.displayMedicalCardPopup;
+
+    if (petId) {
+      this.loadMedicalCard(petId);
+    }
   }
 
   togglePopup() {
@@ -56,5 +74,23 @@ export class DoctorPageComponent implements OnInit {
     if (this.displayPopup) {
       this.loadAppointments();
     }
+  }
+
+  showConclusionPopup(petId: number) {
+    this.switchToMedicalCard = false;
+    this.displayConclusionPopup = true;
+
+    this.selectedOrderProcedureId = petId;
+  }
+
+  showMedicalCard() {
+    this.switchToMedicalCard = true;
+    this.displayConclusionPopup = false;
+  }
+
+  submitMedicalReportClicked() {
+    let report: MedicalReport = {conclusion: this.conclusion, details: this.details };
+    this.orderProcedureService.addMedicalReport(this.selectedOrderProcedureId, report).subscribe();
+    this.showMedicalCard();
   }
 }

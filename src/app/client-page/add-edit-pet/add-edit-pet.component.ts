@@ -64,7 +64,6 @@ export class AddEditPetComponent implements OnInit {
     }
 
     this.closeEvent.next();
-
   }
 
   addPet() {
@@ -80,13 +79,11 @@ export class AddEditPetComponent implements OnInit {
     this.PetsService.patchPet(this.petToEdit.id, patch).subscribe();
 
     this.cloneObjectToShow(this.petToEdit, this.inputPet);
-
-
   }
 
   cloneObjectToShow(target: any, source: any) {
     Object.keys(source).forEach((key) => {
-      target[key] = source[key]
+      target[key] = source[key];
     });
   }
 
@@ -94,8 +91,6 @@ export class AddEditPetComponent implements OnInit {
 
     this.petToAdd.animalTypeId = value;
   }
-
-
 
   uploadPhoto(event) {
     this.fileToUpload = event.target.files[0];
