@@ -54,6 +54,7 @@ export class AddEditPetComponent implements OnInit {
   clonePetToImput() {
     this.inputPet = JSON.parse(JSON.stringify(this.petToEdit));
   }
+  
   submitClicked() {
 
     if (this.displayPetEditComponent) {
@@ -94,6 +95,8 @@ export class AddEditPetComponent implements OnInit {
 
   uploadPhoto(event) {
     this.fileToUpload = event.target.files[0];
+
+    console.log(this.fileToUpload);
     
 
     let petImage = {
