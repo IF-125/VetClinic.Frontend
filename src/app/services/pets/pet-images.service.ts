@@ -13,12 +13,19 @@ export class PetImagesService {
 
   constructor(private http:HttpClient) { }
 
-  uploadImage(fileToUpload: File, petImage):Observable<any>{
+  uploadImage(fileToUpload: File, petImage:PetImage):Observable<any>{
 
+    console.log(fileToUpload)
+    console.log(petImage)
     const formData: FormData = new FormData();
-    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    formData.append("file", fileToUpload);
+    const mData = JSON.stringify(petImage);
+    formData.append('data', mData);
+
+    console.log(formData)
     
-    return this.http.post(this.APIUrl+'​/PetsImages',formData,petImage)
+    return this.http.post(this.APIUrl+ '/PetsImages',formData)
+ 
   }
 
 }

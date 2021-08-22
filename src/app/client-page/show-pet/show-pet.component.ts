@@ -23,6 +23,7 @@ export class ShowPetComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshPetList();
+    
   }
 
   toggleEditPetPopup(pet:Pet){
@@ -45,8 +46,8 @@ export class ShowPetComponent implements OnInit {
   refreshPetList() {
     this.petService.getPetListByClientId(this.clientId).subscribe((data) => {
       this.PetList = data;
-
-      console.log(this.PetList[0].petImages[0])
+      
+      console.log(this.PetList)
     });
   }
 }
