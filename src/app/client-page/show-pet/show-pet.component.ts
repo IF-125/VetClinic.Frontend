@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PetSharedService } from 'src/app/services/pets/pet-shared.service';
 import { PetsService } from 'src/app/services/pets/pets.service';
 import { Client } from 'src/models/Client';
 import { Pet } from 'src/models/Pet';
@@ -9,7 +10,10 @@ import { Pet } from 'src/models/Pet';
   styleUrls: ['./show-pet.component.scss'],
 })
 export class ShowPetComponent implements OnInit {
-  constructor(private petService: PetsService) {}
+  constructor(
+    private petService: PetsService,
+    private petSharedService:PetSharedService
+    ) {}
 
   @Input() clientId = '';
   @Input() client: Client;
@@ -22,8 +26,11 @@ export class ShowPetComponent implements OnInit {
   
 
   ngOnInit(): void {
+
+    this.petSharedService.refreshNeeded.subscribe(
+      ()=>{this.refreshPetList();}
+    );
     this.refreshPetList();
-    
   }
 
   toggleEditPetPopup(pet:Pet){

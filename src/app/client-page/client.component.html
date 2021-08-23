@@ -21,7 +21,7 @@
 
       <app-add-edit-pet 
       [client]="client"
-      [(ngModel)]="displayPetAddComponent"
+      [(ngModel)]="displayPetAddComponent" ngDefaultControl 
       [displayPetAddComponent]="displayPetAddComponent"
       (closeEvent)="toggleAddPetPopup()">
       </app-add-edit-pet>

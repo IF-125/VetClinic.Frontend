@@ -34,7 +34,7 @@
 
         <input type="submit" value="Submit" (click)="submitClicked()">
 
-        <input type="del" value="Delete this pet" role="button"   (click)="delClicked()">
+        <input type="del" *ngIf="displayPetEditComponent" value="Delete this pet" role="button"   (click)="delClicked()">
     </form>
   </div>
 

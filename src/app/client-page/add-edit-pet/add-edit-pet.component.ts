@@ -1,13 +1,13 @@
 import { PetImagesService } from './../../services/pets/pet-images.service';
-import { HttpClient } from '@angular/common/http';
 import { PetsService } from './../../services/pets/pets.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AnimalTypesService } from 'src/app/services/animal-types/animal-types.service';
 import { PetClass } from 'src/models/PetClass';
 import { Client } from 'src/models/Client';
-import { Pet } from 'src/models/Pet';
 import { compare } from 'fast-json-patch';
 import { PetImage } from 'src/models/PetImage';
+import { Router } from '@angular/router';
+import { PetSharedService } from 'src/app/services/pets/pet-shared.service';
 
 @Component({
   selector: 'app-add-edit-pet',
@@ -17,7 +17,11 @@ import { PetImage } from 'src/models/PetImage';
 export class AddEditPetComponent implements OnInit {
   constructor(private AnimalTypesService: AnimalTypesService,
     private PetsService: PetsService,
-    private PetImagesService: PetImagesService) { }
+    private PetImagesService: PetImagesService,
+    private PetSharedService:PetSharedService,
+
+    //check
+    private router: Router  ) { }
 
   @Input() client: Client;
   animalTypeList: any[];
@@ -61,10 +65,8 @@ export class AddEditPetComponent implements OnInit {
       this.addPet();
     }
 
-    if(this.fileToUpload!=null){
       this.uploadImage();
-    }
-
+   
     
 
     this.closeEvent.next();
@@ -75,14 +77,14 @@ export class AddEditPetComponent implements OnInit {
     
     console.log(this.AddEditPet)
 
-    let petAdded:any;
     this.PetsService.addPet(this.AddEditPet).subscribe(
-      (data)=>{petAdded=data
-        console.log(petAdded)
+      (data)=>{this.AddEditPet=data
+        console.log(this.AddEditPet)
+        this.uploadImage()
+        // //check
+        // this.PetSharedService._refreshNeeded$.next();
       }
     );
-    
-
   }
 
   patchPet() {
@@ -115,22 +117,25 @@ export class AddEditPetComponent implements OnInit {
   }
 
   uploadImage(){
+
+    if(this.fileToUpload!=null&&this.AddEditPet.id!=null){
+      console.log(this.fileToUpload);
     
-    console.log(this.fileToUpload);
-    
-
-    let petImage = {
-      petId: this.AddEditPet.id
-
-    };
-
-    let petImageOut: PetImage;
-
-    this.PetImagesService.uploadImage(this.fileToUpload, petImage).subscribe(
-      (data) => {
-        petImageOut = data;
-      });
-
+      let petImage = {
+        petId: this.AddEditPet.id
+      };
+  
+      console.log(petImage);
+  
+      let petImageOut: PetImage;
+  
+      this.PetImagesService.uploadImage(this.fileToUpload, petImage).subscribe(
+        (data) => {
+          petImageOut = data;
+        //   //check
+        // this.PetSharedService._refreshNeeded$.next();
+        });
+    }
   }
 
   refreshAnimalTypeList() {
@@ -140,13 +145,19 @@ export class AddEditPetComponent implements OnInit {
   }
 
   delClicked(){
+    this.PetsService.deletePet(this.AddEditPet.id).subscribe(
 
-    console.log("del clicked")
-    this.PetsService.deletePet(this.AddEditPet.id).subscribe();
+    );
     this.closeEvent.next();
   }
 
-  
+  //check
+  reloadComponent() {
+    let currentUrl = this.router.url;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([currentUrl]);
+    }
 
 }
 
