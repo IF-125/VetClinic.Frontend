@@ -18,9 +18,25 @@ input[type=text], select {
     border-radius: 4px;
     cursor: pointer;
   }
-  
   input[type=submit]:hover {
     background-color: #173f69;
+  }
+
+  input[type=del] {
+    text-align:center;
+    width: 100%;
+    background-color: #c22014;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  
+  input[type=del]:hover {
+    background-color: #911a11;
   }
   
   div {

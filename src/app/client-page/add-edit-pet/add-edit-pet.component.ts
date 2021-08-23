@@ -139,6 +139,15 @@ export class AddEditPetComponent implements OnInit {
       .subscribe((data) => (this.animalTypeList = data));
   }
 
+  delClicked(){
+
+    console.log("del clicked")
+    this.PetsService.deletePet(this.AddEditPet.id).subscribe();
+    this.closeEvent.next();
+  }
+
+  
+
 }
 
 
