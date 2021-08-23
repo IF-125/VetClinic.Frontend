@@ -22,8 +22,7 @@ export class AddEditPetComponent implements OnInit {
   @Input() client: Client;
   animalTypeList: any[];
 
-  @Input() petToAdd: PetClass = new PetClass();
-  @Input() petToEdit: Pet;
+  @Input() AddEditPet: PetClass = new PetClass();
   @Input() inputPet: any;
 
   @Input() displayPetEditComponent: boolean;
@@ -31,10 +30,8 @@ export class AddEditPetComponent implements OnInit {
 
   @Output() closeEvent = new EventEmitter();
 
-  //petToEdit:Pet;
 
-
-  PhotoFilePath: string;
+  PhotoFilePath: any;
   fileToUpload: File | null = null;
 
 
@@ -45,16 +42,16 @@ export class AddEditPetComponent implements OnInit {
       this.clonePetToImput();
     }
     else {
-      this.inputPet = this.petToAdd;
+      this.inputPet = this.AddEditPet;
     }
 
 
   }
 
   clonePetToImput() {
-    this.inputPet = JSON.parse(JSON.stringify(this.petToEdit));
+    this.inputPet = JSON.parse(JSON.stringify(this.AddEditPet));
   }
-  
+
   submitClicked() {
 
     if (this.displayPetEditComponent) {
@@ -64,22 +61,36 @@ export class AddEditPetComponent implements OnInit {
       this.addPet();
     }
 
+    if(this.fileToUpload!=null){
+      this.uploadImage();
+    }
+
+    
+
     this.closeEvent.next();
   }
 
   addPet() {
-    this.petToAdd.clientId = this.client.id
+    this.AddEditPet.clientId = this.client.id
+    
+    console.log(this.AddEditPet)
 
-    this.PetsService.addPet(this.petToAdd).subscribe();
+    let petAdded:any;
+    this.PetsService.addPet(this.AddEditPet).subscribe(
+      (data)=>{petAdded=data
+        console.log(petAdded)
+      }
+    );
+    
 
   }
 
   patchPet() {
-    let patch = compare(this.petToEdit, this.inputPet)
+    let patch = compare(this.AddEditPet, this.inputPet)
 
-    this.PetsService.patchPet(this.petToEdit.id, patch).subscribe();
+    this.PetsService.patchPet(this.AddEditPet.id, patch).subscribe();
 
-    this.cloneObjectToShow(this.petToEdit, this.inputPet);
+    this.cloneObjectToShow(this.AddEditPet, this.inputPet);
   }
 
   cloneObjectToShow(target: any, source: any) {
@@ -90,17 +101,26 @@ export class AddEditPetComponent implements OnInit {
 
   setTypeToPet(value: any) {
 
-    this.petToAdd.animalTypeId = value;
+    this.AddEditPet.animalTypeId = value;
   }
 
-  uploadPhoto(event) {
+  selectImage(event) {
     this.fileToUpload = event.target.files[0];
 
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileToUpload); 
+    reader.onload = (_event) => { 
+      this.PhotoFilePath = reader.result; 
+    }
+  }
+
+  uploadImage(){
+    
     console.log(this.fileToUpload);
     
 
     let petImage = {
-      petId: 1032
+      petId: this.AddEditPet.id
 
     };
 
@@ -108,15 +128,8 @@ export class AddEditPetComponent implements OnInit {
 
     this.PetImagesService.uploadImage(this.fileToUpload, petImage).subscribe(
       (data) => {
-        petImageOut = data
+        petImageOut = data;
       });
-
-    console.log(petImageOut);
-
-    this.PhotoFilePath = petImageOut.path;
-
-    console.log(this.PhotoFilePath);
-
 
   }
 

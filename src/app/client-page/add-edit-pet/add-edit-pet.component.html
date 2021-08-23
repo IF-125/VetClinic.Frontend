@@ -1,7 +1,7 @@
 <div>
     <div class="ml-3 bd-highlight" style="width: 40%;">
         <img [src]=PhotoFilePath height="250px;" width="200px;">
-        <input type="file" (change)="uploadPhoto($event)" class="mt-2"/>
+        <input type="file" (change)="selectImage($event)" class="mt-2"/>
     </div>
 
     <form action="/action_page.php">
@@ -17,7 +17,7 @@
         </select>
         <select id="atype" name="atype"  *ngIf="displayPetEditComponent" disabled=true>
             <option >
-                {{petToEdit.animalType}}
+                {{AddEditPet.animalType}}
             </option>
         </select>
 

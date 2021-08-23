@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { MedicalCard } from 'src/models/MedicalCard';
 import { Pet } from 'src/models/Pet';
 import { Operation } from 'fast-json-patch';
+import { PetClass } from 'src/models/PetClass';
 
 
 @Injectable({
@@ -32,7 +33,7 @@ export class PetsService {
     return this.http.get<any>(this.APIUrl + '/Pets/GetByClientId/' + val);
   }
 
-  addPet(val: any) {
+  addPet(val: any):Observable<any> {
     return this.http.post(this.APIUrl + '/pets', val);
   }
 
