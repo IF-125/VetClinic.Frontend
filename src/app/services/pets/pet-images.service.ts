@@ -35,6 +35,10 @@ export class PetImagesService {
  
   }
 
+  getAllPetImages(petId:number):Observable<any>{
+    return this.http.get(this.APIUrl+'/PetsImages?petId='+petId)
+  }
+
 }
 
 

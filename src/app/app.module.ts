@@ -16,6 +16,8 @@ import { ClientComponent } from './client-page/client.component';
 import { EditProfComponent } from './client-page/edit-prof/edit-prof.component';
 import { ShowPetComponent } from './client-page/show-pet/show-pet.component';
 import { AddEditPetComponent } from './client-page/add-edit-pet/add-edit-pet.component';
+import { ShowImagesComponent } from './client-page/show-images/show-images.component';
+import { NgxImageDisplayModule } from '@creativeacer/ngx-image-display';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { AddEditPetComponent } from './client-page/add-edit-pet/add-edit-pet.com
     AddEditPetComponent,
     HomeComponent,
     AppointmentComponent,
-    AdministratorComponent
+    AdministratorComponent,
+    ShowImagesComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +42,8 @@ import { AddEditPetComponent } from './client-page/add-edit-pet/add-edit-pet.com
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxImageDisplayModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })

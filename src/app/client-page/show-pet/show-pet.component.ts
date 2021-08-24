@@ -23,6 +23,7 @@ export class ShowPetComponent implements OnInit {
 
   petPopupTitle:string;
   displayPetEditComponent:boolean=false;
+  displayShowImagesComponent:boolean=false;
   
 
   ngOnInit(): void {
@@ -56,5 +57,11 @@ export class ShowPetComponent implements OnInit {
       
       console.log(this.PetList)
     });
+  }
+
+  toggleImagePetPopup(pet:Pet){
+    this.displayShowImagesComponent=!this.displayShowImagesComponent;
+    this.selectedPet=pet;
+    console.log(this.selectedPet)
   }
 }

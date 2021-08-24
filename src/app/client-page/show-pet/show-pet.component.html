@@ -14,6 +14,20 @@
   </div>
 </div>
 
+<div class="popup-form-wrapper" *ngIf="displayShowImagesComponent">
+  <div class="bg" (click)="toggleImagePetPopup()"></div>
+  <div class="popup-form">
+    <h1 class="popup-title">{{petPopupTitle}}</h1>
+
+      <app-show-images 
+      [selectedPet]="selectedPet" 
+      [displayShowImagesComponent]="displayShowImagesComponent"
+      (closeEvent)="toggleImagePetPopup()">
+      </app-show-images>
+      
+  </div>
+</div>
+
 
 
 <div class="pets">
@@ -24,7 +38,7 @@
 
       <div class="pet-image-container"> 
 
-          <img class="pet-image"  *ngIf="pet.petImages[0]" src={{pet.petImages[0].path}}>
+          <img class="pet-image"  *ngIf="pet.petImages[0]" src={{pet.petImages[0].path}} (click)="toggleImagePetPopup(pet)">
           <img class="pet-image"  *ngIf="!pet.petImages[0]" src="./assets/images/noImage.jpg">
           
       </div>
