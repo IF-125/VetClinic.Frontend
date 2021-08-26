@@ -5,28 +5,80 @@
     <p class="info-text">When the date of your appointment will be known, we will send you an email with additional information. Please note that if your problem is urgent you can use our emergency services and we will treat your animal right away.</p>
 </div>
 <div class="contact-section">
-    <h1 class="contact-title">Enter your contact information</h1>
-    <div class="input-grid">
+    <h1 class="contact-title">Create an appointment</h1>
+    <div class="inputs">
         <div>
-            <label class="label-text">First name</label>
-            <input type="text" class="input-field">
+            <label class="label-text">Select pet:</label>
+            <select #pet class="input-field">
+                <option value={{pet.id}} *ngFor="let pet of Pets">{{pet.name}}</option>
+            </select>
         </div>
         <div>
-            <label class="label-text">Last name</label>
-            <input type="text" class="input-field">
-        </div>
-        <div>
-            <label class="label-text">Phone number</label>
-            <input type="text" class="input-field">
-        </div>
-        <div>
-            <label class="label-text">Email address</label>
-            <input type="email" class="input-field">
+            <label class="label-text">Select procedure:</label>
+            <select  #procedure class="input-field">
+                <option value={{procedure.id}} *ngFor="let procedure of Procedures">{{procedure.title}}</option>
+            </select>
         </div>
     </div>
     <div>
-        <label class="label-text">Describe your problem</label>
-        <textarea class="description-field"></textarea>
+        <label class="label-text">Select preferred payment method:</label>
+        <div class="payment-section">
+            <input type="radio" id="cash" name="payment_method" value="cash" checked="true" (change)= "showCardForm=false; isDisabled=false">
+            <label for="cash">Pay with cash</label>
+        </div>
+        <div class="payment-section">
+            <input type="radio" id="card" name="payment_method" value="card" (change)= "showCardForm=true; isDisabled=true">
+            <label for="card">Pay with credit card</label>
+        </div>
     </div>
-    <input class="submit-button" type="button" value="Submit">
+    <div class="creditCardForm" *ngIf="showCardForm">
+        <div class="heading">
+            <h1>Enter your credit card information</h1>
+        </div>
+        <div class="payment">
+            <form>
+                <div class="form-group owner">
+                    <label for="owner">Name</label>
+                    <input type="text" class="form-control" id="owner">
+                </div>
+                <div class="form-group CVV">
+                    <label for="cvv">CVV</label>
+                    <input type="text" class="form-control" id="cvv" maxlength="3">
+                </div>
+                <div class="form-group" id="card-number-field">
+                    <label for="cardNumber">Card Number</label>
+                    <input class="form-control" id="cardNumber" type="tel" inputmode="numeric" pattern="[0-9\s]{13,19}" autocomplete="cc-number" maxlength="19" placeholder="xxxx xxxx xxxx xxxx">
+                </div>
+                <div class="form-group" id="expiration-date">
+                    <label>Expiration Date</label>
+                    <select>
+                        <option value="01">January</option>
+                        <option value="02">February </option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select>
+                        <option value="21"> 2021</option>
+                        <option value="22"> 2022</option>
+                        <option value="23"> 2023</option>
+                        <option value="24"> 2024</option>
+                        <option value="25"> 2025</option>
+                        <option value="26"> 2026</option>
+                    </select>
+                </div>
+                <div class="form-group" id="pay-now">
+                    <button type="submit" class="btn btn-default" id="confirm-purchase" (click)="isDisabled=false">Confirm</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <input class="submit-button" type="button" value="Submit" [disabled]="isDisabled" (click)="onSubmit(pet.value, procedure.value, showCardForm)">
 </div>

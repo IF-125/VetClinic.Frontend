@@ -1,6 +1,5 @@
 export interface OrderProceduresOfDoctor {
     id: number,
-    count: number,
     time: string,
     conclusion: string,
     details: string,

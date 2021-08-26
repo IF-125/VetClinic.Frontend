@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PetSharedService } from 'src/app/services/pets/pet-shared.service';
 import { PetsService } from 'src/app/services/pets/pets.service';
+import { Client } from 'src/models/Client';
+import { Pet } from 'src/models/Pet';
 
 @Component({
   selector: 'app-show-pet',
@@ -7,28 +10,27 @@ import { PetsService } from 'src/app/services/pets/pets.service';
   styleUrls: ['./show-pet.component.scss'],
 })
 export class ShowPetComponent implements OnInit {
-  constructor(private petService: PetsService) {}
+  constructor(
+    private petService: PetsService,
+    private petSharedService:PetSharedService) {}
 
   @Input() clientId = '';
+  @Input() client: Client;
 
-  PetList: any = [];
-  pet: any;
+  PetList: Pet[] = [];
+  selectedPet: any;
+
+  petPopupTitle:string;
+  displayPetEditComponent:boolean=false;
+  displayShowImagesComponent:boolean=false;
+  
 
   ngOnInit(): void {
+
+    this.petSharedService.refreshNeeded.subscribe(
+      ()=>{this.refreshPetList();}
+    );
     this.refreshPetList();
-  }
-
-  editClick(item) {
-    this.pet = item;
-  }
-
-  deleteClick(item) {
-    if (confirm('Are you sure??')) {
-      this.petService.deletePet(item.PetId).subscribe((data) => {
-        alert(data.toString());
-        this.refreshPetList();
-      });
-    }
   }
 
   refreshPetList() {
@@ -36,4 +38,19 @@ export class ShowPetComponent implements OnInit {
       this.PetList = data;
     });
   }
+
+  toggleEditPetPopup(pet:Pet){
+    this.petPopupTitle="Edit your pet";
+    this.displayPetEditComponent=!this.displayPetEditComponent;
+    this.selectedPet=pet;
+  }
+
+  toggleImagePetPopup(pet:Pet){
+    this.displayShowImagesComponent=!this.displayShowImagesComponent;
+    this.selectedPet=pet;
+  }
+
+ 
+
+  
 }

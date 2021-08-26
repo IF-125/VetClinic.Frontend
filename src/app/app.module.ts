@@ -1,3 +1,4 @@
+import { AdministratorComponent } from './administrator/administrator.component';
 import { AppointmentComponent } from './appointment-page/appointment.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,8 @@ import { ShowPetComponent } from './client-page/show-pet/show-pet.component';
 import { AddEditPetComponent } from './client-page/add-edit-pet/add-edit-pet.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { ShowImagesComponent } from './client-page/show-images/show-images.component';
+import { NgxImageDisplayModule } from '@creativeacer/ngx-image-display';
 
 
 @NgModule({
@@ -34,6 +37,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     AppointmentComponent,
     RegistrationFormComponent,
     LoginFormComponent
+    AdministratorComponent,
+    ShowImagesComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxImageDisplayModule.forRoot()
   ],
   bootstrap: [AppComponent]
 })

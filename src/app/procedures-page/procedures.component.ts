@@ -8,8 +8,9 @@ import { ProceduresService } from '../services/procedures/procedures.service';
   styleUrls: ['./procedures.component.scss'],
 })
 export class ProceduresComponent implements OnInit {
-  public isUserAuthenticated: boolean;
-  constructor(private _authService: AuthenticationService, private service: ProceduresService) {}
+
+  constructor(private procedureService: ProceduresService) {}
+  
   Procedures: any = [];
 
   ngOnInit(): void {
@@ -18,8 +19,12 @@ export class ProceduresComponent implements OnInit {
   }
 
   getProcedures() {
-    this.service.getProcedureList().subscribe((data) => {
+    this.procedureService.getProcedureList().subscribe((data) => {
       this.Procedures = data;
     });
+  }
+
+  addService(title: string, duration: string, price: string){
+    this.procedureService.addProcedure(title);
   }
 }

@@ -1,61 +1,104 @@
- <div class="popup-form-wrapper" *ngIf="displayPopup">
-    <div class="bg" (click)="togglePopup()"></div>
-    <div class="popup-form">
-      <h1 class="popup-title">Current Appointments</h1>
-      <table class="appointment-table">
-        <tr>
-          <th>Date</th>
-          <th>From</th>
-          <th>To</th>
-          <th>Client</th>
-        </tr>
-        <tr *ngFor="let a of appointments">
-          <td>{{a?.date}}</td>
-          <td>{{a?.from}}</td>
-          <td>{{a?.to}}</td>
-          <td>George Smith</td>
-        </tr>
-      </table> 
-    </div>
+<div class="popup-form-wrapper" *ngIf="displayPopup">
+  <div class="bg" (click)="togglePopup()"></div>
+  <div class="popup-form">
+    <h1 class="popup-title">Current Appointments</h1>
+    <table class="appointment-table">
+      <tr>
+        <th>Date</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Client</th>
+      </tr>
+      <tr *ngFor="let a of appointments">
+        <td>{{a?.date}}</td>
+        <td>{{a?.from}}</td>
+        <td>{{a?.to}}</td>
+        <td>George Smith</td>
+      </tr>
+    </table>
   </div>
+</div>
 
-  <div class="popup-form-wrapper" *ngIf="displayMedicalCardPopup">
-    <div class="bg" (click)="openMedicalCard()"></div>
-    <div class="popup-form">
+<div class="popup-form-wrapper" *ngIf="displayMedicalCardPopup">
+  <div class="bg" (click)="openMedicalCard()"></div>
+  <div class="popup-medical-card-form">
+    <div *ngIf="switchToMedicalCard">
       <h1 class="popup-title">Medical Card</h1>
+      <h2 class="pet-name">{{medicalCard.name}}</h2>
+      <div class="pet-section">
+        <div class="image-wrapper">
+          <img
+            src="https://images.unsplash.com/photo-1606468130092-4a7f1e6988b1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80">
+        </div>
+        <div class="pet-text">
+          <h3 class="type">Type: {{medicalCard.animalType}}</h3>
+          <h3 class="age">Age: {{medicalCard.age}} year(s)</h3>
+          <h3 class="breed">Breed: {{medicalCard.breed}}</h3>
+          <h3 class="owner">Owner: {{medicalCard.owner}}</h3>
+          <p class="description">{{medicalCard.information}}</p>
+        </div>
+      </div>
+      <h1 class="popup-title">Previous procedures</h1>
+      <table class="procedures-table">
+        <tr>
+          <th>Name</th>
+          <th>Conclusion</th>
+          <th>Details</th>
+          <th>Order date</th>
+          <th>Status</th>
+        </tr>
+        <tr *ngFor="let o of medicalCard.orderProcedures">
+          <td>{{o.procedureTitle}}</td>
+          <td>{{o?.conclusion}}</td>
+          <td>{{o?.details}}</td>
+          <td>{{o.orderDate}}</td>
+          <td *ngIf="o.employeeId == doctorId && o.status == 'Assigned'; else showStatus">
+            <button (click)="showConclusionPopup(o.id)" [ngClass]="{active:switchToMedicalCard}"
+              [ngClass]="{passive:displayConclusionPopup}">Add conclusion</button>
+          </td>
+          <ng-template #showStatus>{{o.status}}</ng-template>
+        </tr>
+      </table>
+    </div>
+    <div *ngIf="displayConclusionPopup">
+      <button (click)="showMedicalCard()" [ngClass]="{active:switchToMedicalCard}"
+        [ngClass]="{passive:displayConclusionPopup}">Back</button>
+        <p>Enter conclusion</p>
+        <input type="text" id="conclusion" name="conclusion" [(ngModel)]="conclusion" />
+        <p>Enter details</p>
+        <input type="text" id="details" name="details" [(ngModel)]="details" />
+        <button (click)="submitMedicalReportClicked()">Submit</button>
     </div>
   </div>
-  
-  <div class="doctor-section">
-    <div class="pets">
-      <input placeholder="Enter pet name" type="text">
-      <div *ngFor="let pet of pets" class="pet-wrapper">
-        <div class="pet">
-          <img class="pet-image" src="./assets/images/cat1.png">
-          <div class="pet-text">
-            <h1>{{pet?.name}}</h1>
-            <div class="pet-info">
-              <h2><span class="bold">Type: </span>{{pet?.animalType}}</h2>
-              <h2><span class="bold">Breed: </span>{{pet?.petBreed}}</h2>
-              <h2><span class="bold">Age: </span>{{pet?.petAge}} year(s)</h2>
-            </div>
-            <p>{{pet?.petInformation}}</p>
-            <div>
-              <h2><span class="bold">Procedure: </span>{{pet?.procedureTitle}}</h2>
-            </div>
+</div>
+
+<div class="doctor-section">
+  <div class="pets">
+    <input placeholder="Enter pet name" type="text">
+    <div *ngFor="let pet of pets" class="pet-wrapper">
+      <div class="pet">
+        <img class="pet-image" src="./assets/images/cat1.png">
+        <div class="pet-text">
+          <h1>{{pet?.name}}</h1>
+          <div class="pet-info">
+            <h2><span class="bold">Type: </span>{{pet?.animalType}}</h2>
+            <h2><span class="bold">Breed: </span>{{pet?.petBreed}}</h2>
+            <h2><span class="bold">Age: </span>{{pet?.petAge}} year(s)</h2>
           </div>
-          <img class="icon" src="./assets/images/clipboard.svg" (click)="openMedicalCard(pet?.id)">
+          <p>{{pet?.petInformation}}</p>
         </div>
-        <div class="graphic"></div>
+        <img class="icon" src="./assets/images/clipboard.svg" (click)="openMedicalCard(pet?.id)">
       </div>
-    </div>
-  
-    <div class="menu-wrapper">
-      <div class="menu">
-        <h1 class="menu-title">Yusuf Amir</h1>
-        <input class="menu-field" value="View appointments" type="button" (click)="togglePopup()">
-      </div>
+      <div class="graphic"></div>
     </div>
   </div>
 
-  <router-outlet></router-outlet>
+  <div class="menu-wrapper">
+    <div class="menu">
+      <h1 class="menu-title">Yusuf Amir</h1>
+      <input class="menu-field" value="View appointments" type="button" (click)="togglePopup()">
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

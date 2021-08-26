@@ -1,3 +1,4 @@
+import { AdministratorComponent } from './administrator/administrator.component';
 import { AppointmentComponent } from './appointment-page/appointment.component';
 import { ClientComponent } from './client-page/client.component';
 import { NgModule } from '@angular/core';
@@ -18,9 +19,10 @@ const routes: Routes = [
   { path: 'client/pet', component: HomeComponent },
   { path: 'doctor/:doctorId', component: DoctorPageComponent},
   { path: 'procedures', component: ProceduresComponent},
-  { path: 'appointment', component: AppointmentComponent},
   { path: 'register' , component: RegistrationFormComponent},
   { path: 'login' , component: LoginFormComponent}
+  { path: 'administrator', component: AdministratorComponent},
+  { path: 'appointment', component: AppointmentComponent}
 ];
 
 @NgModule({
