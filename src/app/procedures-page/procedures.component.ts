@@ -14,10 +14,7 @@ export class ProceduresComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProcedures();
-    this._authService.authChanged
-    .subscribe(res => {
-      this.isUserAuthenticated = res;
-    });
+    
   }
 
   getProcedures() {
