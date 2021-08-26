@@ -10,13 +10,13 @@
         <div>
             <label class="label-text">Select pet:</label>
             <select #pet class="input-field">
-                <option value={{pet.name}} *ngFor="let pet of Pets">{{pet.name}}</option>
+                <option value={{pet.id}} *ngFor="let pet of Pets">{{pet.name}}</option>
             </select>
         </div>
         <div>
             <label class="label-text">Select procedure:</label>
             <select  #procedure class="input-field">
-                <option value={{procedure.title}} *ngFor="let procedure of Procedures">{{procedure.title}}</option>
+                <option value={{procedure.id}} *ngFor="let procedure of Procedures">{{procedure.title}}</option>
             </select>
         </div>
     </div>
@@ -80,5 +80,5 @@
             </form>
         </div>
     </div>
-    <input class="submit-button" type="button" value="Submit" [disabled]="isDisabled" (click)="sendEmail(pet.value, procedure.value)">
+    <input class="submit-button" type="button" value="Submit" [disabled]="isDisabled" (click)="onSubmit(pet.value, procedure.value, showCardForm)">
 </div>
