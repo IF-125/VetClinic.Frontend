@@ -3,4 +3,5 @@ export class Procedure{
     description: string;
     duration: string;
     price: string;
+    animalTypesIds: number[];
 }

@@ -19,4 +19,8 @@ export class ProceduresService {
   addProcedure(val: any) {
     return this.http.post(this.APIUrl + '/procedure', val);
   }
+
+  deleteProcedure(val: any) {
+    return this.http.delete(this.APIUrl + '/procedure/' + val);
+  }
 }

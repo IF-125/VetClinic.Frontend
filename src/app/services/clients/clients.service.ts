@@ -19,6 +19,10 @@ export class ClientsService {
     return this.http.get<any>(this.APIUrl + '/Client?id=' + val);
   }
 
+  addClient(val: any) {
+    return this.http.post(this.APIUrl + '/Client', val);
+  }
+
   patchClient(id: any, operation:Operation[]): Observable<any> {
 
     

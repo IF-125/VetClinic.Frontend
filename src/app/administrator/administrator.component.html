@@ -3,34 +3,47 @@
     <h1 class="services" (click)="showServices()" [ngClass]="{active:displayServices}" [ngClass]="{passive:!displayServices}">Services</h1>
     <h1 class="appointments" (click)="showAppointments()" [ngClass]="{active:displayAppointments}" [ngClass]="{passive:!displayAppointments}">Appointments</h1>
 </div>
+<button (click)="toggleDelete()" [ngClass]="deleteMode ? 'button-active' : 'button-passive'"class="delete-button">X</button>
+
+<div class="popup-form-wrapper" *ngIf="displayPopup">
+  <div class="popup-form">
+    <button (click)="togglePopup()">Close</button>
+  </div>
+</div>
+
 <div class="tables">
     <div *ngIf="displayEmployees">
-        <input placeholder="Search for employees" type="text">
         <table class="employees-table">
             <tr>
-              <th>Name</th>
+              <th>First Name</th>
+              <th>Last Name</th>
               <th>Position</th>
               <th>Address</th>
               <th>Email</th>
+              <th>Phone number</th>
             </tr>
             <tr *ngFor="let employee of Employees">
-              <td>{{employee.firstName + " " + employee.lastName}}</td>
+              <td>{{employee.firstName}}</td>
+              <td>{{employee.lastName}}</td>
               <td>{{employee.position}}</td>
               <td>{{employee.address}}</td>
               <td>{{employee.email}}</td>
+              <td>{{employee.phoneNumber}}</td>
             </tr>
             <tr>
-              <td><input class="procedure-input" type="text"></td>
-              <td><select class="procedure-input">
-                <option value={{position.title}} *ngFor="let position of Positions">{{position.title}}</option>
+              <td><input #firstName class="procedure-input" type="text"></td>
+              <td><input #lastName class="procedure-input" type="text"></td>
+              <td><select #position class="procedure-input">
+                  <option value={{position.title}} *ngFor="let position of Positions">{{position.title}}</option>
               </select></td>
-              <td><input class="procedure-input" type="drop"></td>
-              <td><input class="procedure-input" type="text"></td>
+              <td><input #address class="procedure-input" type="drop"></td>
+              <td><input #email class="procedure-input" type="text"></td>
+              <td><input #phoneNumber class="procedure-input" type="text"></td>
             </tr>
           </table>
+          <input type="button" (click)="registerEmployee(firstName.value, lastName.value, position.value, address.value, email.value, phoneNumber.value)">
     </div>
     <div *ngIf="displayServices">
-        <input placeholder="Search for services" type="text">
         <table class="services-table">
             <tr>
               <th>Name</th>
@@ -38,7 +51,7 @@
               <th>Price</th>
               <th>Description</th>
             </tr>
-            <tr *ngFor="let procedure of Procedures">
+            <tr *ngFor="let procedure of Procedures | async" (click)="deleteProcedure(procedure.id)">
               <td>{{procedure.title}}</td>
               <td>{{procedure.duration}}</td>
               <td>{{procedure.price}}$</td>
@@ -54,26 +67,31 @@
           <input type="button" (click)="postProcedure(title.value, duration.value, price.value, description.value)">
     </div>
     <div *ngIf="displayAppointments">
-        <input placeholder="Search for appointments" type="text">
         <table class="appointments-table">
             <tr>
-              <th>Date</th>
               <th>From</th>
               <th>To</th>
-              <th>Pet name</th>
+              <th>Order Procedure Id</th>
+              <th>Doctor Id</th>
+              <th></th>
             </tr>
-            <tr *ngFor="let appointment of Appointments">
-              <td>{{formatDate(appointment.from)}}</td>
-              <td>{{formatTime(appointment.from)}}</td>
-              <td>{{(formatTime(appointment.to))}}</td>
-              <td>{{appointment.petName}}</td>
+            <tr id={{appointment.id}} *ngFor="let appointment of Appointments | async" (click)="deleteAppointment(appointment.id)">
+              <td>{{appointment.from}}</td>
+              <td>{{appointment.to}}</td>
+              <td>{{appointment.orderProcedureId}}</td>
+              <td>{{appointment.doctorName}}</td>
+              <button (click)="togglePopup()">Edit</button>
             </tr>
             <tr>
-                <td><input class="procedure-input" type="text"></td>
-                <td><input class="procedure-input" type="text"></td>
-                <td><input class="procedure-input" type="text"></td>
-                <td><input class="procedure-input" type="text"></td>
+                <td><input #from class="procedure-input" type="text"></td>
+                <td><input #to class="procedure-input" type="text"></td>
+                <td><input #orderProcedureId class="procedure-input" type="text"></td>
+                <td><select #doctorId class="procedure-input">
+                  <option value={{employee.id}} *ngFor="let employee of Employees">{{employee.firstName + " " + employee.lastName}}</option>
+                    </select></td>
+                <td></td>
             </tr>
+            <input type="button" (click)="postAppointment(from.value, to.value, orderProcedureId.value, doctorId.value)">
           </table>
     </div>
 </div>

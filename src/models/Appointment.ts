@@ -1,6 +1,5 @@
-export interface Appointment{
-    id: number,
-    date: string,
-    from: string,
-    to: string
+export class Appointment{
+    from: string;
+    to: string;
+    status: number;
 }
