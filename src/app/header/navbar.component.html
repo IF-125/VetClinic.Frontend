@@ -4,71 +4,8 @@
     <div class="options">
         <a class="navbar-item" href="http://localhost:4200/home">ABOUT US</a>
         <a class="navbar-item" href="http://localhost:4200/procedures">SERVICES</a>
-        <a class="navbar-item" href="http://localhost:4200/appointment">APPOINTMENT</a>
-        <p class="navbar-item" (click)="togglePopup()">SIGN UP</p>
+        <a class="navbar-item" href="http://localhost:4200/appointment" *ngIf="isAdmin">APPOINTMENT</a>
+        <a class="navbar-item" routerLink ="/login" *ngIf="!isUserLoggedIn">SIGN IN</a>
+        <p class="navbar-item" *ngIf="isUserLoggedIn" (click)="logout()"> Log Out</p> 
     </div>
   </div>
-  <div class="popup-form-wrapper" *ngIf="displayPopup">
-    <div class="bg" (click)="togglePopup()"></div>
-    <div class="popup-form">
-        <div class="popup-title">
-            <h1 class="sign-up" (click)="showSignup()" [ngClass]="{active:displaySignup}" [ngClass]="{passive:displayLogin}">SIGN UP</h1>
-            <h1 class="log-in" (click)="showLogin()" [ngClass]="{active:displayLogin}" [ngClass]="{passive:displaySignup}">LOG IN</h1>
-        </div>
-        <div *ngIf="displaySignup">
-            <h2>Sign Up For Free</h2>
-            <div class="fields">
-                <div class="info">
-                    <div>
-                        <label>First Name</label>
-                        <input id="first-name" type="text">
-                    </div>
-                    <div>
-                        <label>Last Name</label>
-                        <input id="last-name" type="text">
-                    </div>      
-                    <div>
-                        <label>Email</label>
-                        <input id="email" type="email">
-                    </div>     
-                </div>
-                <div class="passwords">
-                    <div>
-                        <label>Password</label>
-                        <input id="password" type="password">
-                    </div>     
-                    <div>
-                        <label>Repeat Password</label>
-                        <input id="repeat-password" type="password">
-                    </div>     
-                </div>
-            </div>
-        </div>
-        <div *ngIf="displayLogin">
-            <div class="fields">
-                <div class="login">
-                    <div>
-                        <label>Email</label>
-                        <input id="email" type="email">
-                    </div>
-                </div>
-                <div class="login">
-                    <div>
-                        <label>Password</label>
-                        <input id="password" type="password">
-                    </div>      
-                </div>
-                <div class="login" id="login-labels">
-                    <div class="remember-me">
-                        <input id="remember-me" type="checkbox">
-                        <label class="login-label">Remember me</label>
-                    </div>       
-                    <div>
-                        <label class="login-label" id="forgot-password">Forgot password?</label>
-                    </div>     
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
