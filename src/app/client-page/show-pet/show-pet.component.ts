@@ -12,8 +12,7 @@ import { Pet } from 'src/models/Pet';
 export class ShowPetComponent implements OnInit {
   constructor(
     private petService: PetsService,
-    private petSharedService:PetSharedService
-    ) {}
+    private petSharedService:PetSharedService) {}
 
   @Input() clientId = '';
   @Input() client: Client;
@@ -34,34 +33,24 @@ export class ShowPetComponent implements OnInit {
     this.refreshPetList();
   }
 
+  refreshPetList() {
+    this.petService.getPetListByClientId(this.clientId).subscribe((data) => {
+      this.PetList = data;
+    });
+  }
+
   toggleEditPetPopup(pet:Pet){
     this.petPopupTitle="Edit your pet";
     this.displayPetEditComponent=!this.displayPetEditComponent;
     this.selectedPet=pet;
-    console.log(this.selectedPet)
-
-  }
-
-  deleteClick(item) {
-    if (confirm('Are you sure??')) {
-      this.petService.deletePet(item.PetId).subscribe((data) => {
-        alert(data.toString());
-        this.refreshPetList();
-      });
-    }
-  }
-
-  refreshPetList() {
-    this.petService.getPetListByClientId(this.clientId).subscribe((data) => {
-      this.PetList = data;
-      
-      console.log(this.PetList)
-    });
   }
 
   toggleImagePetPopup(pet:Pet){
     this.displayShowImagesComponent=!this.displayShowImagesComponent;
     this.selectedPet=pet;
-    console.log(this.selectedPet)
   }
+
+ 
+
+  
 }

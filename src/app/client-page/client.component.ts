@@ -26,15 +26,8 @@ export class ClientComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.clientId = params['clientId'];
       });
-
-    this.clientService.getClientById(this.clientId).subscribe((data) => {
-      this.client = data;
-      this.client.id=this.clientId;
-    });
+    this.getClient();
   }
-
-
-  
 
   toggleProfilePopup() {
     this.displayProfileComponent = !this.displayProfileComponent;
@@ -44,4 +37,13 @@ export class ClientComponent implements OnInit {
     this.displayPetAddComponent = !this.displayPetAddComponent;
     this.petPopupTitle="Add your pet";
   }
+
+  getClient(){
+    this.clientService.getClientById(this.clientId).subscribe((data) => {
+      this.client = data;
+      this.client.id=this.clientId;
+    });
+
+  }
+  
 }

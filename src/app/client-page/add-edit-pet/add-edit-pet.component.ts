@@ -13,7 +13,8 @@ import { compare } from 'fast-json-patch';
   styleUrls: ['./add-edit-pet.component.scss'],
 })
 export class AddEditPetComponent implements OnInit {
-  constructor(private AnimalTypesService: AnimalTypesService,
+  constructor(
+    private AnimalTypesService: AnimalTypesService,
     private PetsService: PetsService,
     private PetImagesService: PetImagesService) { }
 
@@ -21,7 +22,7 @@ export class AddEditPetComponent implements OnInit {
   animalTypeList: any[];
 
   @Input() AddEditPet: PetClass = new PetClass();
-  @Input() inputPet: any;
+  @Input() inputPet: PetClass;
 
   @Input() displayPetEditComponent: boolean;
   @Input() displayPetAddComponent: boolean;
@@ -48,56 +49,46 @@ export class AddEditPetComponent implements OnInit {
     this.inputPet = JSON.parse(JSON.stringify(this.AddEditPet));
   }
 
+  refreshAnimalTypeList() {
+    this.AnimalTypesService
+      .getAnimalTypeList()
+      .subscribe((data) => (this.animalTypeList = data));
+  }
+  
+  setTypeToPet(value: any) {
+    this.AddEditPet.animalTypeId = value;
+  }
+
+
 
   submitClicked() {
     if (this.displayPetEditComponent) {
       this.patchPet();
+      this.uploadImage();
     }
     else {
       this.addPet();
     }
 
-    this.uploadImage();
-
     this.closeEvent.next();
-  }
-
-  addPet() {
-    this.AddEditPet.clientId = this.client.id
-
-    console.log(this.AddEditPet)
-
-    this.PetsService.addPet(this.AddEditPet).subscribe(
-      (data) => {
-        this.AddEditPet = data
-        console.log(this.AddEditPet)
-        this.uploadImage()
-      }
-    );
   }
 
   patchPet() {
     let patch = compare(this.AddEditPet, this.inputPet)
 
     this.PetsService.patchPet(this.AddEditPet.id, patch).subscribe();
-
-    this.cloneObjectToShow(this.AddEditPet, this.inputPet);
   }
 
-  cloneObjectToShow(target: any, source: any) {
-    Object.keys(source).forEach((key) => {
-      target[key] = source[key];
-    });
-  }
+  addPet() {
+    this.AddEditPet.clientId = this.client.id
 
-  refreshAnimalTypeList() {
-    this.AnimalTypesService
-      .getAnimalTypeList()
-      .subscribe((data) => (this.animalTypeList = data));
-  }
-
-  setTypeToPet(value: any) {
-    this.AddEditPet.animalTypeId = value;
+    this.PetsService.addPet(this.AddEditPet).subscribe(
+      (data) => {
+        this.AddEditPet = data
+        
+        this.uploadImage()
+      }
+    );
   }
 
   selectImage(event) {
@@ -112,21 +103,24 @@ export class AddEditPetComponent implements OnInit {
 
   uploadImage() {
     if (this.fileToUpload != null && this.AddEditPet.id != null) {
-      console.log(this.fileToUpload);
-
+     
       let petImage = {
         petId: this.AddEditPet.id
       };
-
-      console.log(petImage);
 
       this.PetImagesService.uploadImage(this.fileToUpload, petImage).subscribe();
     }
   }
 
+
+  
+
+  
   delClicked() {
-    this.PetsService.deletePet(this.AddEditPet.id).subscribe();
-    this.closeEvent.next();
+    if(confirm("Are you want to delete this pet")) {
+      this.PetsService.deletePet(this.AddEditPet.id).subscribe();
+      this.closeEvent.next();
+    }  
   }
 
 }

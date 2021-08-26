@@ -1,16 +1,9 @@
-import { element } from 'protractor';
 import { PetImage } from './../../../models/PetImage';
 import { Component, Input, OnInit } from '@angular/core';
 import { ImageData, DisplayConfig, SameSizeConfig, ImageEffect } from '@creativeacer/ngx-image-display';
 import { Pet } from 'src/models/Pet';
-import { Subscription, Subject } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { PetImagesService } from 'src/app/services/pets/pet-images.service';
-
-interface Product {
-  name: string;
-  price: number;
-  description: string;
-}
 
 @Component({
   selector: 'app-show-images',
@@ -22,12 +15,11 @@ export class ShowImagesComponent implements OnInit {
   @Input() displayShowImagesComponent: boolean;
   @Input() selectedPet:Pet;
 
-  images2: Array<PetImage> = [];
+  petImages: Array<PetImage> = [];
 
   imagesub: Subscription;
   images: ImageData[] = [];
-  products: Product[] = [];
-  
+    
   samesizeConfig: SameSizeConfig={
     active: true,
     imgContainerHeight: '250px'
@@ -36,7 +28,7 @@ export class ShowImagesComponent implements OnInit {
     imageminwidth: '250px',
     containerwidth: '80%',
     containerheight: '500px',
-    fullScreenView: true // Set to false to hide the top right full screen option
+    fullScreenView: true 
   };
   hovereffect: ImageEffect={
     hoverEffectActive: true,
@@ -58,13 +50,11 @@ export class ShowImagesComponent implements OnInit {
 setimages(){
   return this.PetImagesService.getAllPetImages(this.selectedPet.id).subscribe(
     (data)=>{
-      this.images2=data;
-      console.log(this.images2)
-
+      this.petImages=data;
+      
       let imagesLocal: ImageData[] = [];
 
-      this.images2.forEach(function (val) {
-        console.log(val)
+      this.petImages.forEach(function (val) {
         let imageX: ImageData = {
           type: 'url',
           imageData: {
@@ -74,8 +64,7 @@ setimages(){
         imagesLocal.push(imageX)
       })
 
-      this.images=imagesLocal
-      console.log(this.images)
+      this.images=imagesLocal;
     }
   )
 }
