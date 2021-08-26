@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <h1 class="card-title">Register</h1>
+        <h1 class="card-title">Registration</h1>
 
         <form [formGroup]="registerForm" autocomplete="off" novalidate (ngSubmit)="registerUser(registerForm.value)">
             <div class="form-group row">
@@ -42,8 +42,9 @@
             </div>
             <br>
             <div class="form-group row">
-                <div class="col-md-1">          
+                <div class="col-md-3">          
                     <button type="submit" class="btn btn-info" [disabled]="!registerForm.valid">Register</button>
+                    <a routerLink="../login" class="btn btn-link">Go to Login</a>
                 </div>
             </div>
         </form>

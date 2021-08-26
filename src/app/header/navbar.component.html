@@ -4,9 +4,9 @@
     <div class="options">
         <a class="navbar-item" href="http://localhost:4200/home">ABOUT US</a>
         <a class="navbar-item" href="http://localhost:4200/procedures">SERVICES</a>
-        <a class="navbar-item" href="http://localhost:4200/appointment">APPOINTMENT</a>
-        <p class="navbar-item" *ngIf="!isUserAuthenticated" (click)="togglePopup()">SIGN UP</p>
-        <p class="navbar-item" *ngIf="isUserAuthenticated" (click)="logout()"> Log Out</p> 
+        <a class="navbar-item" href="http://localhost:4200/appointment" *ngIf="isAdmin">APPOINTMENT</a>
+        <a class="navbar-item" routerLink ="/login" *ngIf="!isUserLoggedIn">SIGN IN</a>
+        <p class="navbar-item" *ngIf="isUserLoggedIn" (click)="logout()"> Log Out</p> 
     </div>
   </div>
   <div class="popup-form-wrapper" *ngIf="displayPopup">
@@ -17,34 +17,7 @@
             <h1 class="log-in" (click)="showLogin()" [ngClass]="{active:displayLogin}" [ngClass]="{passive:displaySignup}">LOG IN</h1>
         </div>
         <div *ngIf="displaySignup">
-            <h2>Sign Up For Free</h2>
-            <div class="fields">
-                <div class="info">
-                    <div>
-                        <label>First Name</label>
-                        <input id="first-name" type="text">
-                    </div>
-                    <div>
-                        <label>Last Name</label>
-                        <input id="last-name" type="text">
-                    </div>      
-                    <div>
-                        <label>Email</label>
-                        <input id="email" type="email">
-                    </div>     
-                </div>
-                <div class="passwords">
-                    <div>
-                        <label>Password</label>
-                        <input id="password" type="password">
-                    </div>     
-                    <div>
-                        <label>Repeat Password</label>
-                        <input id="repeat-password" type="password">
-                    </div>     
-                </div>
-            </div>
-        </div>
+            <h2 class="nav-link" routerLink="/register"> Register</h2>
         <div *ngIf="displayLogin">
             <div class="fields">
                 <div class="login">

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { UserForAuthentication } from 'src/models/UserForAuth';
-import { AuthResponse } from 'src/models/AuthResponse';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {CookieService} from 'ngx-cookie-service';
+
 
 @Component({
   selector: 'app-login-form',
@@ -16,7 +17,7 @@ export class LoginFormComponent implements OnInit {
   public errorMessage: string = '';
   public showError: boolean;
   private _returnUrl: string;
-  constructor(private _authService: AuthenticationService, private _router: Router, private _route: ActivatedRoute) { }
+  constructor(private _authService: AuthenticationService, private _router: Router, private _route: ActivatedRoute, private _cookies : CookieService ){ }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -42,11 +43,10 @@ export class LoginFormComponent implements OnInit {
       email: login.username,
       password: login.password
     }
-
+    
     this._authService.loginUser('account/Login', userForAuth)
     .subscribe(res => {
        localStorage.setItem("token", res['token']);
-       this._authService.sendAuthStateChangeNotification(Boolean(res['isAuthSuccessful']));
        this._router.navigate([this._returnUrl]);
     },
     (error) => {

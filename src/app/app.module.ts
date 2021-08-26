@@ -16,6 +16,7 @@ import { EditProfComponent } from './client-page/edit-prof/edit-prof.component';
 import { ShowPetComponent } from './client-page/show-pet/show-pet.component';
 import { AddEditPetComponent } from './client-page/add-edit-pet/add-edit-pet.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { RegistrationFormComponent } from './registration-form/registration-form
     AddEditPetComponent,
     HomeComponent,
     AppointmentComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,

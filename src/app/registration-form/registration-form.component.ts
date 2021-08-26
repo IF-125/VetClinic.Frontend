@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { UserForRegistration} from 'src/models/UserForRegistration';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -12,7 +13,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class RegistrationFormComponent implements OnInit {
   public registerForm: FormGroup;
 
-  constructor(private _authService: AuthenticationService) { }
+  constructor(private _authService: AuthenticationService, private _router: Router) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -44,9 +45,10 @@ export class RegistrationFormComponent implements OnInit {
       confirmPassword: formValues.confirm
     };
 
-    this._authService.registerUser("api/account/Register", user)
+    this._authService.registerUser("account/Register", user)
     .subscribe(_ => {
       console.log("Successful registration");
+      this._router.navigate(['/login']);
     },
     error => {
       console.log(error.error.errors);
