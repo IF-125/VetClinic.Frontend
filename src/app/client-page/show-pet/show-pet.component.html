@@ -5,11 +5,25 @@
     <h1 class="popup-title">{{petPopupTitle}}</h1>
 
       <app-add-edit-pet 
-      [petToEdit]="selectedPet" 
+      [AddEditPet]="selectedPet" 
       [clientId]="clientId" 
       [displayPetEditComponent]="displayPetEditComponent"
       (closeEvent)="toggleEditPetPopup()">
       </app-add-edit-pet>
+      
+  </div>
+</div>
+
+<div class="popup-form-wrapper" *ngIf="displayShowImagesComponent">
+  <div class="bg" (click)="toggleImagePetPopup()"></div>
+  <div class="popup-form">
+    <h1 class="popup-title">{{petPopupTitle}}</h1>
+
+      <app-show-images 
+      [selectedPet]="selectedPet" 
+      [displayShowImagesComponent]="displayShowImagesComponent"
+      (closeEvent)="toggleImagePetPopup()">
+      </app-show-images>
       
   </div>
 </div>
@@ -21,9 +35,10 @@
   <div class="pet-wrapper" *ngFor="let pet of PetList">
     <div class="pet">
 
+
       <div class="pet-image-container"> 
 
-          <img class="pet-image"  *ngIf="pet.petImages[0]" src={{pet.petImages[0].path}}>
+          <img class="pet-image"  *ngIf="pet.petImages[0]" src={{pet.petImages[0].path}} (click)="toggleImagePetPopup(pet)">
           <img class="pet-image"  *ngIf="!pet.petImages[0]" src="./assets/images/noImage.jpg">
           
       </div>
@@ -36,7 +51,7 @@
           <h2><span class="bold">Type: </span>{{pet.animalType}}</h2>
           <h2><span class="bold">Breed: </span>{{pet.breed}}</h2>
           <h2><span class="bold">Age: </span>{{pet.age}}</h2>
-          <!-- <h2><span class="bold">petImage: </span>{{pet[0].petImages[0]}}</h2> -->
+          
 
         </div>
         <p>{{pet.information}}</p>

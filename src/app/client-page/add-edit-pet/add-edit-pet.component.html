@@ -1,23 +1,24 @@
 <div>
     <div class="ml-3 bd-highlight" style="width: 40%;">
         <img [src]=PhotoFilePath height="250px;" width="200px;">
-        <input type="file" (change)="uploadPhoto($event)" class="mt-2"/>
+        <input type="file" (change)="selectImage($event)" class="mt-2"/>
     </div>
 
-    <form action="/action_page.php">
+    <form >
       
         <label for="name">Name</label>
-        <input type="text" id="name" name="name" [(ngModel)]="inputPet.name" placeholder="Your pet name..">
+        <input type="text" id="name" name="name"  [(ngModel)]="inputPet.name" placeholder="Your pet name..">
 
         <label for="atype">Animal type</label>
         <select id="atype" name="atype" #t (change)="setTypeToPet(t.value)" *ngIf="displayPetAddComponent">
+            <option>select type</option>
             <option  *ngFor="let atype of animalTypeList" [value]="atype.id">
                 {{atype.type}}
             </option>
         </select>
         <select id="atype" name="atype"  *ngIf="displayPetEditComponent" disabled=true>
             <option >
-                {{petToEdit.animalType}}
+                {{AddEditPet.animalType}}
             </option>
         </select>
 
@@ -33,6 +34,8 @@
 
 
         <input type="submit" value="Submit" (click)="submitClicked()">
+
+        <input type="del" *ngIf="displayPetEditComponent" value="Delete this pet" role="button"   (click)="delClicked()">
     </form>
   </div>
 

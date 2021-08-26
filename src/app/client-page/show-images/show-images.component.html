@@ -1,0 +1,12 @@
+<div class="samesizeoption">
+
+  <div class="container" >
+    <h2 class="top" text-align: center>Photo gallery</h2>
+    <div #rr *ngIf="samesizeoption" class="fullWidth">
+      <ngx-image-display [sameSize]="samesizeConfig" [imageEffect]="hovereffect" [images]="images"  [displayconfig]="displayconfig" (onImageSelected)="logImage($event)"></ngx-image-display>
+    </div>
+    <div #rr *ngIf="!samesizeoption" class="fullWidth">
+      <ngx-image-display [images]="images" [imageEffect]="hovereffect" [displayconfig]="displayconfig" (onImageSelected)="logImage($event)"></ngx-image-display>
+    </div>
+  
+  </div>

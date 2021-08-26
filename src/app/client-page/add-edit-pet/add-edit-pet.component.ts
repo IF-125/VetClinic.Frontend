@@ -1,10 +1,11 @@
+import { PetImagesService } from './../../services/pets/pet-images.service';
 import { PetsService } from './../../services/pets/pets.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AnimalTypesService } from 'src/app/services/animal-types/animal-types.service';
 import { PetClass } from 'src/models/PetClass';
 import { Client } from 'src/models/Client';
-import { Pet } from 'src/models/Pet';
 import { compare } from 'fast-json-patch';
+
 
 @Component({
   selector: 'app-add-edit-pet',
@@ -13,83 +14,116 @@ import { compare } from 'fast-json-patch';
 })
 export class AddEditPetComponent implements OnInit {
   constructor(
-    private service: AnimalTypesService,
-    private PetsService: PetsService
-  ) {}
+    private AnimalTypesService: AnimalTypesService,
+    private PetsService: PetsService,
+    private PetImagesService: PetImagesService) { }
 
   @Input() client: Client;
   animalTypeList: any[];
 
-  @Input() petToAdd: PetClass = new PetClass();
-  @Input() petToEdit: Pet;
-  @Input() inputPet: any;
+  @Input() AddEditPet: PetClass = new PetClass();
+  @Input() inputPet: PetClass;
 
   @Input() displayPetEditComponent: boolean;
   @Input() displayPetAddComponent: boolean;
 
   @Output() closeEvent = new EventEmitter();
 
-  //petToEdit:Pet;
 
-  PhotoFileName: string;
-  PhotoFilePath: string;
+  PhotoFilePath: any;
+  fileToUpload: File | null = null;
+
 
   ngOnInit(): void {
     this.refreshAnimalTypeList();
 
     if (this.displayPetEditComponent) {
       this.clonePetToImput();
-    } else {
-      this.inputPet = this.petToAdd;
+    }
+    else {
+      this.inputPet = this.AddEditPet;
     }
   }
 
   clonePetToImput() {
-    this.inputPet = JSON.parse(JSON.stringify(this.petToEdit));
+    this.inputPet = JSON.parse(JSON.stringify(this.AddEditPet));
   }
+
+  refreshAnimalTypeList() {
+    this.AnimalTypesService
+      .getAnimalTypeList()
+      .subscribe((data) => (this.animalTypeList = data));
+  }
+  
+  setTypeToPet(value: any) {
+    this.AddEditPet.animalTypeId = value;
+  }
+
+
+
   submitClicked() {
     if (this.displayPetEditComponent) {
       this.patchPet();
-    } else {
+      this.uploadImage();
+    }
+    else {
       this.addPet();
     }
 
     this.closeEvent.next();
   }
 
-  addPet() {
-    this.petToAdd.clientId = this.client.id;
-
-    this.PetsService.addPet(this.petToAdd).subscribe();
-  }
-
   patchPet() {
-    let patch = compare(this.petToEdit, this.inputPet);
+    let patch = compare(this.AddEditPet, this.inputPet)
 
-    this.PetsService.patchPet(this.petToEdit.id, patch).subscribe();
-
-    this.cloneObjectToShow(this.petToEdit, this.inputPet);
+    this.PetsService.patchPet(this.AddEditPet.id, patch).subscribe();
   }
 
-  cloneObjectToShow(target: any, source: any) {
-    Object.keys(source).forEach((key) => {
-      target[key] = source[key];
-    });
+  addPet() {
+    this.AddEditPet.clientId = this.client.id
+
+    this.PetsService.addPet(this.AddEditPet).subscribe(
+      (data) => {
+        this.AddEditPet = data
+        
+        this.uploadImage()
+      }
+    );
   }
 
-  setTypeToPet(value: any) {
-    this.petToAdd.animalTypeId = value;
+  selectImage(event) {
+    this.fileToUpload = event.target.files[0];
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileToUpload);
+    reader.onload = (_event) => {
+      this.PhotoFilePath = reader.result;
+    }
   }
 
-  uploadPhoto(event) {
-    var file = event.target.files[0];
-    const formData: FormData = new FormData();
-    formData.append('uploadedFile', file, file.name);
+  uploadImage() {
+    if (this.fileToUpload != null && this.AddEditPet.id != null) {
+     
+      let petImage = {
+        petId: this.AddEditPet.id
+      };
+
+      this.PetImagesService.uploadImage(this.fileToUpload, petImage).subscribe();
+    }
   }
 
-  refreshAnimalTypeList() {
-    this.service
-      .getAnimalTypeList()
-      .subscribe((data) => (this.animalTypeList = data));
+
+  
+
+  
+  delClicked() {
+    if(confirm("Are you want to delete this pet")) {
+      this.PetsService.deletePet(this.AddEditPet.id).subscribe();
+      this.closeEvent.next();
+    }  
   }
+
 }
+
+
+

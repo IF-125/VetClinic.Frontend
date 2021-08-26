@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { MedicalCard } from 'src/models/MedicalCard';
 import { Pet } from 'src/models/Pet';
 import { Operation } from 'fast-json-patch';
+import { PetSharedService } from 'src/app/services/pets/pet-shared.service';
 
 
 @Injectable({
@@ -14,7 +15,8 @@ import { Operation } from 'fast-json-patch';
 export class PetsService {
   APIUrl: string = environment.baseApiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,
+    private PetSharedService:PetSharedService) {}
 
   getPets(doctorId: string): Observable<Pet[]> {
     return this.http
@@ -32,8 +34,12 @@ export class PetsService {
     return this.http.get<any>(this.APIUrl + '/Pets/GetByClientId/' + val);
   }
 
-  addPet(val: any) {
-    return this.http.post(this.APIUrl + '/pets', val);
+  addPet(val: any):Observable<any> {
+    return this.http.post(this.APIUrl + '/pets', val).pipe(
+      tap(()=>{
+        this.PetSharedService._refreshNeeded$.next();
+      })
+    );
   }
 
   updatePet(val: any) {
@@ -41,11 +47,21 @@ export class PetsService {
   }
 
   patchPet(id:any, operation:Operation[]):Observable<any>{
-    return this.http.patch(this.APIUrl+'/pets/'+id,operation);
+    return this.http.patch(this.APIUrl+'/pets/'+id,operation).pipe(
+      tap(()=>{
+        this.PetSharedService._refreshNeeded$.next();
+      })
+    );
   }
 
   deletePet(val: any) {
-    return this.http.delete(this.APIUrl + '/pets/' + val);
+    return this.http.delete(this.APIUrl + '/pets/' + val,
+    {responseType: 'text'})
+    .pipe(
+      tap(()=>{
+        this.PetSharedService._refreshNeeded$.next();
+      })
+    );
   }
 
   getPetById(val: any): Observable<any> {
