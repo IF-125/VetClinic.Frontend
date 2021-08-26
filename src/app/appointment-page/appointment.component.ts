@@ -3,6 +3,7 @@ import { EmailService } from './../services/email/email.service';
 import { PetsService } from 'src/app/services/pets/pets.service';
 import { Component } from "@angular/core";
 import { ProceduresService } from '../services/procedures/procedures.service';
+import { OrderProcedureService } from '../services/orderProcedure/orderProcedure.service';
 
 @Component({
     selector: 'section-appointment',
@@ -10,7 +11,8 @@ import { ProceduresService } from '../services/procedures/procedures.service';
     styleUrls: ['./appointment.component.scss']
 })
 export class AppointmentComponent {
-    constructor(private emailService : EmailService, private proceduresService: ProceduresService, private petsService: PetsService) {}
+    constructor(private emailService : EmailService, private proceduresService: ProceduresService, 
+      private petsService: PetsService, private orderProcedureService: OrderProcedureService) {}
     
     email: Email;
     showCardForm = false;
@@ -39,11 +41,26 @@ export class AppointmentComponent {
         this.showCardForm = value;
     }
 
-    sendEmail(PetId: any, ProcedureId: any){
+    onSubmit(petId: any, procedureId: any, isPaid: boolean){
+      if(isPaid){
+        this.createOrderProcedure(petId, procedureId, 2);
+      }else{
+        this.createOrderProcedure(petId, procedureId, 1);
+      }
+    }
+
+    sendEmail(petId: any, procedureId: any, orderProcedureId: any){
       this.email = new Email();
-      this.email.pet = PetId;
-      this.email.procedure = ProcedureId;
+      this.email.pet = petId;
+      this.email.procedure = procedureId;
+      this.email.orderProcedureId = orderProcedureId.toString();
       console.log(this.email);
-      this.emailService.sendEmail(this.email);
+      this.emailService.sendEmail(this.email).subscribe();
+    }
+
+    createOrderProcedure(petId: number, procedureId: number, paymentMethod: number){
+      this.orderProcedureService.addOrderProcedure(petId.toString(), procedureId.toString(), paymentMethod).subscribe(data => {
+        this.sendEmail(petId, procedureId, data);
+      });
     }
 }

@@ -1,5 +1,5 @@
-import { Procedure } from './../../models/Procedure';
 import { PositionService } from './../services/positions/position.service';
+import { Procedure } from './../../models/Procedure';
 import { AppointmentService } from './../services/appointments/appointment.service';
 import { ProceduresService } from './../services/procedures/procedures.service';
 import { EmployeeService } from './../services/employees/employee.service';
