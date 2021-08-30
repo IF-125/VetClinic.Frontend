@@ -20,7 +20,16 @@ export class ProceduresService {
     return this.http.post(this.APIUrl + '/procedure', val);
   }
 
-  deleteProcedure(val: any) {
-    return this.http.delete(this.APIUrl + '/procedure/' + val);
+  putProcedure(id:number, val: any){
+    console.log(val);
+    return this.http.put(this.APIUrl + '/procedure', val, {
+      params:{
+          id: id.toString()
+      }
+    });
+  }
+
+  deleteProcedure(id: any) {
+    return this.http.delete(this.APIUrl + '/procedure/' + id);
   }
 }
