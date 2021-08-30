@@ -59,8 +59,6 @@ export class AddEditPetComponent implements OnInit {
     this.AddEditPet.animalTypeId = value;
   }
 
-
-
   submitClicked() {
     if (this.displayPetEditComponent) {
       this.patchPet();
@@ -112,10 +110,6 @@ export class AddEditPetComponent implements OnInit {
     }
   }
 
-
-  
-
-  
   delClicked() {
     if(confirm("Are you want to delete this pet")) {
       this.PetsService.deletePet(this.AddEditPet.id).subscribe();
