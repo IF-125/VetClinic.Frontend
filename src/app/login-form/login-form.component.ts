@@ -3,7 +3,6 @@ import { AuthenticationService } from 'src/app/services/authentication/authentic
 import { UserForAuthentication } from 'src/models/UserForAuth';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {CookieService} from 'ngx-cookie-service';
 
 
 @Component({
@@ -17,7 +16,7 @@ export class LoginFormComponent implements OnInit {
   public errorMessage: string = '';
   public showError: boolean;
   private _returnUrl: string;
-  constructor(private _authService: AuthenticationService, private _router: Router, private _route: ActivatedRoute, private _cookies : CookieService ){ }
+  constructor(private _authService: AuthenticationService, private _router: Router, private _route: ActivatedRoute){ }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
