@@ -14,5 +14,6 @@ export class EmailService {
   sendEmail(val: any){
     return this.http.post(this.APIUrl + '/Email', val, {
       responseType: 'text' 
-   })  }
+   })  
+  }
 }

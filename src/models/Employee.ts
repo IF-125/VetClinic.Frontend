@@ -1,7 +1,7 @@
-export class Clients {
+export class Employee{
+    email: string;
     firstName: string;
     lastName: string;
-    email: string;
     address: string;
-    phoneNumber:string;
+    position: string;
 }
