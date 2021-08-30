@@ -26,10 +26,10 @@
       <h1 class="popup-title">Medical Card</h1>
       <h2 class="pet-name">{{medicalCard.name}}</h2>
       <div class="pet-section">
-        <!-- <div class="image-wrapper">
+        <div class="image-wrapper">
           <img
             src="https://images.unsplash.com/photo-1606468130092-4a7f1e6988b1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80">
-        </div> -->
+        </div>
         <div class="pet-text">
           <h3 class="type">Type: {{medicalCard.animalType}}</h3>
           <h3 class="age">Age: {{medicalCard.age}} year(s)</h3>
@@ -60,14 +60,14 @@
         </tr>
       </table>
     </div>
-    <div *ngIf="displayConclusionPopup" style="margin-top: 200px;">
-        <h1 class="conclusion-details">Enter conclusion</h1>
-        <input class="conclusion-details-input" type="text" id="conclusion" name="conclusion" [(ngModel)]="conclusion" />
-        <h1 class="conclusion-details">Enter details</h1>
-        <input class="conclusion-details-input" type="text" id="details" name="details" [(ngModel)]="details" />
-        <button class="conclusion-details-button" (click)="showMedicalCard()" [ngClass]="{active:switchToMedicalCard}"
-          [ngClass]="{passive:displayConclusionPopup}">Back</button>
-        <button class="conclusion-details-button" (click)="submitMedicalReportClicked()">Submit</button>
+    <div *ngIf="displayConclusionPopup">
+      <button (click)="showMedicalCard()" [ngClass]="{active:switchToMedicalCard}"
+        [ngClass]="{passive:displayConclusionPopup}">Back</button>
+        <p>Enter conclusion</p>
+        <input type="text" id="conclusion" name="conclusion" [(ngModel)]="conclusion" />
+        <p>Enter details</p>
+        <input type="text" id="details" name="details" [(ngModel)]="details" />
+        <button (click)="submitMedicalReportClicked()">Submit</button>
     </div>
   </div>
 </div>

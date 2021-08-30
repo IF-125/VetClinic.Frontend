@@ -5,26 +5,9 @@
 </div>
 <button (click)="toggleDelete()" [ngClass]="deleteMode ? 'button-active' : 'button-passive'"class="delete-button">X</button>
 
-<div class="popup-form-wrapper" *ngIf="displayAppointmentPopup">
+<div class="popup-form-wrapper" *ngIf="displayPopup">
   <div class="popup-form">
-    <input class="input-edit-form" value={{fromEdit}} class="procedure-input" type="text">
-    <input class="input-edit-form" value={{toEdit}}  class="procedure-input" type="text">
-    <input class="input-edit-form" value={{orderProcedureIdEdit}}  class="procedure-input" type="text">
-    <select class="input-edit-form" v#doctorId class="procedure-input" value={{doctorIdEdit}} >
-      <option value={{employee.id}} *ngFor="let employee of Employees">{{employee.firstName + " " + employee.lastName}}</option>
-    </select>
-    <button (click)="toggleAppointmentPopup()">Close</button>
-  </div>
-</div>
-
-<div class="popup-form-wrapper" *ngIf="displayProcedurePopup">
-  <div class="popup-form">
-    <input class="input-edit-form" #name value={{nameEdit}} class="procedure-input" type="text">
-    <input class="input-edit-form" #duration value={{durationEdit}}  class="procedure-input" type="text">
-    <input class="input-edit-form" #price value={{priceEdit}}  class="procedure-input" type="text">
-    <input class="input-edit-form" #description value={{descriptionEdit}}  class="procedure-input" type="text">
-    <button class="edit-form-button" (click)="updateProcedure(name.value, duration.value, description.value, price.value); toggleProcedurePopup()">Confirm</button>
-    <button class="edit-form-button" (click)="toggleProcedurePopup()">Close</button>
+    <button (click)="togglePopup()">Close</button>
   </div>
 </div>
 
@@ -37,15 +20,15 @@
               <th>Position</th>
               <th>Address</th>
               <th>Email</th>
-              <th></th>
+              <th>Phone number</th>
             </tr>
-            <tr *ngFor="let employee of Employees" (click)="deleteEmployee(employee.id)">
+            <tr *ngFor="let employee of Employees">
               <td>{{employee.firstName}}</td>
               <td>{{employee.lastName}}</td>
               <td>{{employee.position}}</td>
               <td>{{employee.address}}</td>
               <td>{{employee.email}}</td>
-              <button class="edit-button" (click)="toggleAppointmentPopup(appointment.id, appointment.from, appointment.to, appointment.orderProcedureId, appointment.doctorId)">Edit</button>
+              <td>{{employee.phoneNumber}}</td>
             </tr>
             <tr>
               <td><input #firstName class="procedure-input" type="text"></td>
@@ -55,10 +38,10 @@
               </select></td>
               <td><input #address class="procedure-input" type="drop"></td>
               <td><input #email class="procedure-input" type="text"></td>
-              <td></td>
+              <td><input #phoneNumber class="procedure-input" type="text"></td>
             </tr>
           </table>
-          <button class="submit-button" (click)="registerEmployee(firstName.value, lastName.value, position.value, address.value, email.value)">Add</button>
+          <input type="button" (click)="registerEmployee(firstName.value, lastName.value, position.value, address.value, email.value, phoneNumber.value)">
     </div>
     <div *ngIf="displayServices">
         <table class="services-table">
@@ -67,24 +50,21 @@
               <th>Duration</th>
               <th>Price</th>
               <th>Description</th>
-              <th></th>
             </tr>
             <tr *ngFor="let procedure of Procedures | async" (click)="deleteProcedure(procedure.id)">
               <td>{{procedure.title}}</td>
               <td>{{procedure.duration}}</td>
               <td>{{procedure.price}}$</td>
               <td>{{procedure.description}}</td>
-              <button class="edit-button" (click)="toggleProcedurePopup(procedure.id, procedure.title, procedure.duration, procedure.price, procedure.description)">Edit</button>
             </tr>
             <tr>
               <td><input #title class="procedure-input" type="text"></td>
               <td><input #duration class="procedure-input" type="text"></td>
               <td><input #price class="procedure-input" type="text"></td>
               <td><input #description class="procedure-input" type="text"></td>
-              <td></td>
             </tr>
           </table>
-          <button class="submit-button" (click)="postProcedure(title.value, duration.value, price.value, description.value)">Add</button>
+          <input type="button" (click)="postProcedure(title.value, duration.value, price.value, description.value)">
     </div>
     <div *ngIf="displayAppointments">
         <table class="appointments-table">
@@ -100,18 +80,18 @@
               <td>{{appointment.to}}</td>
               <td>{{appointment.orderProcedureId}}</td>
               <td>{{appointment.doctorName}}</td>
-              <button class="edit-button" (click)="toggleAppointmentPopup(appointment.id, appointment.from, appointment.to, appointment.orderProcedureId, appointment.doctorId)">Edit</button>
+              <button (click)="togglePopup()">Edit</button>
             </tr>
             <tr>
                 <td><input #from class="procedure-input" type="text"></td>
                 <td><input #to class="procedure-input" type="text"></td>
                 <td><input #orderProcedureId class="procedure-input" type="text"></td>
                 <td><select #doctorId class="procedure-input">
-                     <option value={{employee.id}} *ngFor="let employee of Employees">{{employee.firstName + " " + employee.lastName}}</option>
+                  <option value={{employee.id}} *ngFor="let employee of Employees">{{employee.firstName + " " + employee.lastName}}</option>
                     </select></td>
                 <td></td>
             </tr>
+            <input type="button" (click)="postAppointment(from.value, to.value, orderProcedureId.value, doctorId.value)">
           </table>
-          <button class="submit-button" (click)="postAppointment(from.value, to.value, orderProcedureId.value, doctorId.value)">Add</button>
     </div>
 </div>
