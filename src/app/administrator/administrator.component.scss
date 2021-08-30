@@ -96,6 +96,36 @@
     color: white;
 }
 
+.submit-button{
+    display: block;
+    width: 300px;
+    height: 50px;
+    margin: 20px auto 0 auto;
+
+    font-size: 24px;
+    background-color: #295889;
+    color: white;
+}
+
+.edit-button{
+    margin: 15px auto 0 auto;
+
+    font-size: 16px;
+    border: 0px;
+    background-color: #295889;
+    color: white;
+}
+
+.edit-form-button{
+    margin-left: 15px;
+    width: 100px;
+    height: 40px;
+  
+    font-size: 26px;
+    border: 0px;
+    background-color: #295889;
+    color: white;
+  }
 .popup-form{  
     border: solid;
     border-width: 10px;

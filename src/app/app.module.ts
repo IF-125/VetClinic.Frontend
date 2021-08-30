@@ -36,7 +36,7 @@ import { NgxImageDisplayModule } from '@creativeacer/ngx-image-display';
     HomeComponent,
     AppointmentComponent,
     RegistrationFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
     AdministratorComponent,
     ShowImagesComponent
   ],
