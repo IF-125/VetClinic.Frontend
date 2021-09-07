@@ -138,14 +138,15 @@ export class AdministratorComponent{
       this.Employees = data;
     });
   }
-
-  registerEmployee(firstName: string, lastName: string, position: number, address: string, email: string, phoneNumber: string){
-    this.newClient = new Clients();
-    this.newClient.firstName = firstName;
-    this.newClient.lastName = lastName;
-    this.newClient.email = email;
-    this.newClient.phoneNumber = phoneNumber;
-    this.clientService.addClient(this.newClient).subscribe((data) => {
+  registerEmployee(firstName: string, lastName: string, position: number, address: string, email: string){
+    this.newEmployee = new Employee();
+    this.newEmployee.firstName = firstName;
+    this.newEmployee.lastName = lastName;
+    this.newEmployee.email = email;
+    this.newEmployee.address = address;
+    this.newEmployee.position = position.toString();
+    this.employeeService.addEmployee(this.newEmployee).subscribe((data) => {
+      this.ngOnInit();
       console.log(data);
     });
   }
