@@ -4,7 +4,6 @@ import { UserForAuthentication } from 'src/models/UserForAuth';
 import { RegistrationResponse } from 'src/models/RegistrationResponse';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import {CookieService} from 'ngx-cookie-service';
 import  jwt_decode from 'jwt-decode';
 
 @Injectable({
@@ -16,7 +15,7 @@ export class AuthenticationService {
   isUserLoggedIn : boolean = false;
   isAdmin: boolean = false;
 
-  constructor(private _http: HttpClient, private _cookies : CookieService) { }
+  constructor(private _http: HttpClient) { }
 
 
   public loginUser = (route: string, body: UserForAuthentication) => {
@@ -41,7 +40,7 @@ export class AuthenticationService {
     localStorage.removeItem("token");
     localStorage.removeItem("isUserLoggedIn");
 
-    this._cookies.deleteAll();
+   
     return this._http.post(this.createCompleteRoute(route, this.ApiUrl), "/Logout");
   }
   

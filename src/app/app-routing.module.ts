@@ -9,7 +9,7 @@ import { ProceduresComponent } from './procedures-page/procedures.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { AuthGuard } from './services/authorization/auth.guard';
-import { NavbarComponent } from './header/navbar.component';
+
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home', canActivate : [AuthGuard] },

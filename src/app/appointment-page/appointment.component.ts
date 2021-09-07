@@ -53,7 +53,7 @@ export class AppointmentComponent {
       this.email = new Email();
       this.email.pet = petId;
       this.email.procedure = procedureId;
-      this.email.orderProcedure = orderProcedureId.toString();
+      this.email.orderProcedureId = orderProcedureId.toString();
       console.log(this.email);
       this.emailService.sendEmail(this.email).subscribe();
     }
