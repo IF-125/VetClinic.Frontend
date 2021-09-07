@@ -193,6 +193,7 @@ export class AdministratorComponent{
     this.newEmployee.position = position.toString();
     this.employeeService.addEmployee(this.newEmployee).subscribe((data) => {
       this.ngOnInit();
+      console.log(data);
     });
   }
 
