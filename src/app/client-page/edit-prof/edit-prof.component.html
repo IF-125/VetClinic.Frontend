@@ -2,20 +2,56 @@
 <div>
     <form >
       <label for="fname">First Name</label>
-      <input type="text" id="fname" name="firstname" [(ngModel)]="inputClient.firstName" placeholder="Your name..">
-  
+      <input type="text" id="fname" name="firstname" #fname="ngModel" required pattern="[A-z]{2,40}"
+      [(ngModel)]="inputClient.firstName" placeholder="Your name..">
+      <div *ngIf="fname.errors &&(fname.touched || fname.dirty)" class="alert alert-danger">
+        <span [hidden]="!fname.errors?.required" >
+          First Name should be added
+        </span> 
+        <span [hidden]="!fname.errors?.pattern" >
+          First Name should contain 2-40 characters
+        </span> 
+      </div>
+
       <label for="lname">Last Name</label>
-      <input type="text" id="lname" name="lastname" [(ngModel)]="inputClient.lastName" placeholder="Your last name..">
+      <input  type="text" id="lname" name="lastname" #lname="ngModel" required pattern="[A-z]{2,40}"
+      [(ngModel)]="inputClient.lastName" placeholder="Your last name..">
+      <div *ngIf="lname.errors &&(lname.touched || lname.dirty)" class="alert alert-danger">
+        <span [hidden]="!lname.errors?.required" >
+          Last Name should be added
+        </span> 
+        <span [hidden]="!lname.errors?.pattern" >
+          Last Name should contain 2-40 characters
+        </span> 
+      </div> 
 
       <label for="email">Email</label>
-      <input type="text" id="email" name="email" [(ngModel)]="inputClient.email" placeholder="Your email..">
+      <input #emailref="ngModel" type="text" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" [(ngModel)]="inputClient.email" placeholder="Your email.." >
+      <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="alert alert-danger">
+        <span [hidden]="!emailref.errors?.required" >
+          Email should be added
+        </span> 
+        <span [hidden]="!emailref.errors?.pattern" >
+          Invalid Email
+        </span> 
+      </div> 
+      
        
       <label for="phone-number">Phone number</label>
-      <input type="text" id="phone-number" name="phone-number" [(ngModel)]="inputClient.phoneNumber" placeholder="Your phone number..">
-      
+      <input type="text" id="phone-number" name="phone-number" #pnumber="ngModel" required pattern="[+]*[0-9]{12}"
+      [(ngModel)]="inputClient.phoneNumber" placeholder="Your phone number..">
+      <div *ngIf="pnumber.errors &&(pnumber.touched || pnumber.dirty)" class="alert alert-danger">
+        <span [hidden]="!pnumber.errors?.required" >
+          Phone number should be added
+        </span> 
+        <span [hidden]="!pnumber.errors?.pattern" >
+          Phone number should be like "+380123456789"
+        </span> 
+      </div> 
       
     
-      <input type="submit" value="Submit" (click)="submitClicked()">
+      <input type="submit" [disabled]="fname.invalid||lname.invalid||emailref.invalid||pnumber.invalid" 
+      value="Submit" (click)="submitClicked()">
     </form>
   </div>
 

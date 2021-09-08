@@ -17,7 +17,7 @@
 <div class="popup-form-wrapper" *ngIf="displayShowImagesComponent">
   <div class="bg" (click)="toggleImagePetPopup()"></div>
   <div class="popup-form">
-    <h1 class="popup-title">{{petPopupTitle}}</h1>
+    <h1 class="popup-title">Photo gallery</h1>
 
       <app-show-images 
       [selectedPet]="selectedPet" 
@@ -31,38 +31,71 @@
 
 
 <div class="pets">
-  
   <div class="pet-wrapper" *ngFor="let pet of PetList">
     <div class="pet">
-
-
+      
       <div class="pet-image-container"> 
-
           <img class="pet-image"  *ngIf="pet.petImages[0]" src={{pet.petImages[0].path}} (click)="toggleImagePetPopup(pet)">
           <img class="pet-image"  *ngIf="!pet.petImages[0]" src="./assets/images/noImage.jpg">
-          
       </div>
 
-
       <div class="pet-text" >
-
         <h1>{{pet.name}}</h1>
         <div class="pet-info">
           <h2><span class="bold">Type: </span>{{pet.animalType}}</h2>
           <h2><span class="bold">Breed: </span>{{pet.breed}}</h2>
           <h2><span class="bold">Age: </span>{{pet.age}}</h2>
-          
-
         </div>
         <p>{{pet.information}}</p>
       
       </div>
       <img class="icon" src="./assets/images/pencil.svg" (click)="toggleEditPetPopup(pet)">
-      <img class="icon" src="./assets/images/clipboard.svg">
+      <img class="icon" src="./assets/images/clipboard.svg" (click)="openMedicalCard(pet?.id)">
     </div>
     <div class="graphic"></div>
   </div>
   
+</div>
+
+<!-- MEDICAL CARD -->
+<div class="popup-form-wrapper" *ngIf="testDisplay">
+  <div class="bg" (click)="openMedicalCard()"></div>
+  <div class="popup-medical-card-form">
+    <div *ngIf="switchToMedicalCard">
+      <h1 class="popup-title">Medical Card</h1>
+      <h2 class="pet-name">{{medicalCard.name}}</h2>
+      <div class="pet-section">
+        <div class="image-wrapper">
+          <img *ngIf="medicalCard.petImages[0]" src={{medicalCard.petImages[0].path}}>
+        </div>
+        <div class="pet-text">
+          <h3 class="type">Type: {{medicalCard.animalType}}</h3>
+          <h3 class="age">Age: {{medicalCard.age}} year(s)</h3>
+          <h3 class="breed">Breed: {{medicalCard.breed}}</h3>
+          <h3 class="owner">Owner: {{medicalCard.owner}}</h3>
+          <p class="description">{{medicalCard.information}}</p>
+        </div>
+      </div>
+      <h1 class="popup-title">Previous procedures</h1>
+      <table class="procedures-table">
+        <tr>
+          <th>Name</th>
+          <th>Conclusion</th>
+          <th>Details</th>
+          <th>Order date</th>
+          <th>Status</th>
+        </tr>
+        <tr *ngFor="let o of medicalCard.orderProcedures">
+          <td>{{o.procedureTitle}}</td>
+          <td>{{o?.conclusion}}</td>
+          <td>{{o?.details}}</td>
+          <td>{{o.orderDate}}</td>
+          <td>{{o.status}}</td>
+          <ng-template #showStatus>{{o.status}}</ng-template>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
 
 
