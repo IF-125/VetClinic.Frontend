@@ -187,10 +187,16 @@ export class AdministratorComponent{
     });
   }
 
+  getRandom(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
   registerEmployee(firstName: string, lastName: string, position: number, address: string, email: string){
     this.newEmployee = new Employee();
     this.newEmployeePosition = new EmployeePosition();
-    this.newEmployee.id = Math.random();
+    this.newEmployee.id = this.getRandom(1, 100000000);
     this.newEmployee.firstName = firstName;
     this.newEmployee.lastName = lastName;
     this.newEmployee.email = email;

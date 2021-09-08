@@ -22,6 +22,7 @@ export class EmployeeService {
   }
 
   deleteEmployee(id: any) {
-    return this.http.delete(this.APIUrl + '/Employees/' + id);
+    return this.http.delete(this.APIUrl + '/Employees/' + id,
+    {responseType: 'text'});
   }
 }
