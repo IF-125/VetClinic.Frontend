@@ -11,6 +11,7 @@ export class NavbarComponent  implements OnInit{
   
   isUserLoggedIn = false;
   isAdmin = false;
+  Userid : string;
 
   constructor(private _authService: AuthenticationService) { }
 
@@ -23,6 +24,8 @@ export class NavbarComponent  implements OnInit{
          this.isUserLoggedIn = false;
 
     this.isAdmin = this._authService.CheckAdmin();
+
+    this.Userid = this._authService.GetUserId();
   }
 
   public logout = () => {

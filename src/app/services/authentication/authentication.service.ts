@@ -36,6 +36,13 @@ export class AuthenticationService {
     console.log(role);
     return role == "Admin";
   }
+  public GetUserId(){
+    var token = localStorage.getItem('token');
+    var decoded = jwt_decode(token);
+    var id =  decoded['nameid'];
+    console.log(id);
+    return id;
+  }
 
   public logout = (route: string) => {
     localStorage.removeItem("token");
