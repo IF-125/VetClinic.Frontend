@@ -1,3 +1,5 @@
+import { EmployeePositionService } from './../services/employees/employeePosition.service';
+import { EmployeePosition } from './../../models/EmployeePosition';
 import { Employee } from './../../models/Employee';
 
 import { Observable, of } from 'rxjs';
@@ -19,9 +21,10 @@ import { Component } from '@angular/core';
 export class AdministratorComponent{
   constructor(private positionService: PositionService, private employeeService: EmployeeService, 
     private procedureService: ProceduresService, private appointmentService: AppointmentService,
-    private orderProcedureService: OrderProceduresService) {}
+    private orderProcedureService: OrderProceduresService, private employeePositionService: EmployeePositionService) {}
 
   newEmployee: Employee;
+  newEmployeePosition: EmployeePosition;
   newProcedure: Procedure;
   newAppointment: Appointment;
   Procedures: Observable<Array<any>>;
@@ -186,13 +189,22 @@ export class AdministratorComponent{
 
   registerEmployee(firstName: string, lastName: string, position: number, address: string, email: string){
     this.newEmployee = new Employee();
+    this.newEmployeePosition = new EmployeePosition();
+    this.newEmployee.id = Math.random();
     this.newEmployee.firstName = firstName;
     this.newEmployee.lastName = lastName;
     this.newEmployee.email = email;
     this.newEmployee.address = address;
-    this.newEmployee.position = position.toString();
+
+    this.newEmployeePosition.employeeId = this.newEmployee.id;
+    this.newEmployeePosition.positionId = position;
+    this.newEmployeePosition.currentBaseSalary = 100;
+    this.newEmployeePosition.rate = 50;
+
     this.employeeService.addEmployee(this.newEmployee).subscribe((data) => {
-      this.ngOnInit();
+      this.employeePositionService.addEmployeePosition(this.newEmployeePosition).subscribe((data) => {
+        this.ngOnInit();
+      });
     });
   }
 

@@ -51,7 +51,7 @@
               <td><input #firstName class="procedure-input" type="text"></td>
               <td><input #lastName class="procedure-input" type="text"></td>
               <td><select #position class="procedure-input">
-                  <option value={{position.title}} *ngFor="let position of Positions">{{position.title}}</option>
+                  <option value={{position.id}} *ngFor="let position of Positions">{{position.title}}</option>
               </select></td>
               <td><input #address class="procedure-input" type="drop"></td>
               <td><input #email class="procedure-input" type="text"></td>
