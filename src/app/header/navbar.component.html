@@ -4,7 +4,7 @@
     <div class="options">
         <a class="navbar-item" href="http://localhost:4200/home">ABOUT US</a>
         <a class="navbar-item" href="http://localhost:4200/procedures">SERVICES</a>
-        <a class="navbar-item" href="http://localhost:4200/appointment" *ngIf="isAdmin">APPOINTMENT</a>
+        <a class="navbar-item" href="http://localhost:4200/appointment">APPOINTMENT</a>
         <a class="navbar-item" routerLink ="/login" *ngIf="!isUserLoggedIn">SIGN IN</a>
         <p class="navbar-item" *ngIf="isUserLoggedIn" (click)="logout()"> Log Out</p> 
     </div>
