@@ -18,8 +18,6 @@
             </span> 
         </div> 
 
-
-
         <label for="atype">Animal type</label>
         <select id="atype" name="atype" #t (change)="setTypeToPet(t.value)" *ngIf="displayPetAddComponent">
             <option>select type</option>
@@ -32,7 +30,6 @@
                 {{AddEditPet.animalType}}
             </option>
         </select>
-
 
         <label for="breed" >Breed</label>
         <input type="text" id="breed" name="breed"  #breed="ngModel" required pattern="\D{2,40}"

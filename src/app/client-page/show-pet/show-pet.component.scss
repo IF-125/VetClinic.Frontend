@@ -180,3 +180,291 @@
         padding-left: 5px;
     }
   }
+
+  //medical card
+  .menu{
+    position: sticky;
+    top: 75px;
+    padding: 35px 40px 35px 40px;
+    margin: 20px 75px 0 0;
+    border: 5px #295889 solid;
+    border-radius: 15px;
+  }
+  .doctor-section{
+    display: flex;
+    justify-content: space-between;
+  }
+  .menu-title{
+    text-align: center;
+    font-family: Roboto;
+    font-size: 42px;
+    font-weight: 500;
+    padding-bottom: 15px !important; 
+  
+    color: #295889;
+  }
+  .menu-field{
+    display: block;
+    margin: 0 auto;
+    background-color: #295889;
+    color: white;
+    border-radius: 5px;
+    border: 0;
+    width: 280px;
+    height: 70px;
+    font-size: 28px;
+  }
+  .pet-image{
+    max-width: 300px;
+  }
+  .icon{
+    width: 30px;
+  }
+  .pets{
+    margin: 20px 0 0 75px;
+    flex-grow: 1;
+    input{
+        display: block;
+        width: calc(100% - 40px);
+        margin-bottom: 20px;
+        border-radius: 15px;
+        border-color: #295889;
+        padding: 15px 0 15px 15px;
+  
+        font-family: Roboto;
+        font-size: 24px;
+        font-weight: 400;
+    }
+  }
+  
+  .pet{
+    margin: 0 20px 0 0;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .pet-info{
+    display: flex;
+  }
+  
+  .pet-text{
+    h1{
+        font-family: Roboto;
+        font-size: 42px;
+        font-weight: 400;
+        line-height: 49px;
+    }
+    h2{
+        margin-right: 5px;
+  
+        font-family: Roboto;
+        font-size: 27px;
+        font-weight: 300;
+    }
+    p{
+        font-family: Roboto;
+        font-size: 22px;
+        font-weight: 300;
+    }
+  
+    padding-left: 20px;
+  }
+  
+  .bold{
+    font-weight: 400;
+  }
+  .graphic{
+    background-color: #295889;
+    height: 2px;
+    width: calc(100% - 20px);
+    margin: 10px 0;
+  }
+  .popup-form{  
+    h2{
+        padding-top: 10px;
+        padding-bottom: 10px;
+  
+        font-family: Roboto;
+        font-size: 36px;
+        font-weight: 500;
+        justify-content: center;
+    }
+    overflow-y: scroll;
+    border: solid;
+    border-width: 10px;
+    border-color: #295889;
+    border-radius: 25px;
+    position: fixed;
+    top: 15%;
+    left: 15%;
+    z-index: 2;
+    height: 550px;
+    width: 900px;
+  
+    background-color: white;
+  }
+  
+  .popup-medical-card-form{  
+    h2{
+        padding-top: 10px;
+        padding-bottom: 10px;
+  
+        font-family: Roboto;
+        font-size: 36px;
+        font-weight: 500;
+        justify-content: center;
+    }
+    overflow-y: scroll;
+    border: solid;
+    border-width: 10px;
+    border-color: #295889;
+    border-radius: 25px;
+    position: fixed;
+    top: 15%;
+    left: 15%;
+    z-index: 2;
+    height: 700px;
+    width: 1400px;
+    overflow: auto;
+    background-color: white;
+  }
+  
+  .bg{
+    position: fixed;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    opacity: 50%;
+    background-color: black;
+  }
+  
+  .popup-title{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    text-align: center;
+  
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 500;
+  
+    color: #295889;
+  }
+  
+  .appointment-table{
+    width: 100%;
+    padding: 0 25px 25px 25px;
+    tr{
+        &:nth-of-type(odd){
+            background-color: #ECECEC;
+        }
+        &:nth-of-type(even){
+            background-color: #C4C4C4;
+        }
+        th{
+            text-align: left;
+            padding: 10px 0 10px 5px;
+  
+            font-family: Roboto;
+            font-size: 28px;
+            font-weight: 700;
+        }
+    }
+    td{
+        font-family: Roboto;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 38px;
+        letter-spacing: 0em;
+        text-align: left;
+        padding-left: 5px;
+    }
+  }
+  
+  .pet-name{
+    margin: 0 25px 0 25px;
+  
+    font-family: Roboto;
+    font-size: 40px;
+    font-weight: 500;
+  
+    color: #295889;
+  }
+  
+  .pet-section{
+    display: flex;
+    margin: 0 25px 0 25px;
+  
+    .image-wrapper{
+      width: 35%;
+      img{
+        width: 300px;
+        height: 300px;
+      }
+      margin-right: 10px;
+    }
+  
+    .pet-text{
+      width: 60%;
+      h3{
+        font-family: Roboto;
+        font-size: 30px;
+        font-weight: 500;
+  
+        color: #295889;
+      }
+    }
+  }
+  
+  .procedures-table{
+    margin: 0 25px 25px 25px;
+    min-width: 100%;
+    tr{
+        &:nth-of-type(odd){
+            background-color: #7ebafb;
+        }
+        &:nth-of-type(even){
+            background-color: #9acbff;
+        }
+        &:nth-of-type(1){
+            background-color: #FFF;
+        }
+        th{
+            padding: 20px 0 20px 5px;
+  
+            font-family: Roboto;
+            font-size: 34px;
+            font-weight: 700;
+        }
+    }
+    td{
+        padding: 10px 0 10px 5px;
+        font-family: Roboto;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 38px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+  
+    td, th{
+      text-align: center;
+    }
+  }
+  
+  .procedure-input{
+      height: 40px;
+      width: 95%;
+      
+      border-radius: 10px;
+      border-width: 2px;
+      color: black;
+  
+      font-size: 18px;
+      font-family: Roboto;
+  }
+  
+  .conclusion-text{
+    color: #FFF;
+  }
